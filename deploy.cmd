@@ -117,8 +117,8 @@ IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
 :: 4. Run Grunt
 IF EXIST "%DEPLOYMENT_TARGET%\Gruntfile.js" (
   pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd !NPM_CMD! install --development
   call :ExecuteCmd !NPM_CMD! install grunt-cli
+  call :ExecuteCmd !NPM_CMD! install --development
   call :ExecuteCmd "%NODE_EXE%" node_modules\grunt-cli\bin\grunt
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
