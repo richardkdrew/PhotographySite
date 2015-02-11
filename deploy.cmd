@@ -109,7 +109,6 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
   pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd !NPM_CMD! install bower
-  IF !ERRORLEVEL! NEQ 0 goto error
   call :ExecuteCmd "%NODE_EXE%" node_modules\bower\bin\bower install
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
@@ -119,8 +118,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
 IF EXIST "%DEPLOYMENT_TARGET%\Gruntfile.js" (
   pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd !NPM_CMD! install grunt-cli
-  IF !ERRORLEVEL! NEQ 0 goto error
-  call :ExecuteCmd "%NODE_EXE%" node_modules\grunt-cli\bin\grunt --no-color
+  call :ExecuteCmd "%NODE_EXE%" node_modules\grunt-cli\bin\grunt
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
