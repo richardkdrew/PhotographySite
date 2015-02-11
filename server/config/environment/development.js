@@ -5,7 +5,7 @@
 module.exports = {
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/nodeplaypen-dev'
+    uri: 'mongodb://localhost/photo-site-dev'
   },
 
   seedDB: true
