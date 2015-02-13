@@ -1,4 +1,4 @@
-(function() {
+/*(function() {
   'use strict';
 
   angular.module('app').config(routeConfig);
@@ -12,6 +12,6 @@
         controller: 'Pictures',
         controllerAs: 'vm'
       })
-  }
-})();
+
+})();}*/
 
