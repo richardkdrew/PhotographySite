@@ -124,6 +124,14 @@ IF EXIST "%DEPLOYMENT_TARGET%\Gruntfile.js" (
   popd
 )
 
+:: grunt-cli
+:: grunt
+:: jit-grunt
+:: time-grunt
+:: jshint-stylish
+::
+
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :: Post deployment stub

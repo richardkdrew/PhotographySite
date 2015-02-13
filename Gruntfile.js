@@ -60,7 +60,7 @@ module.exports = function (grunt) {
           '<%= yeoman.client %>/{app,components}/**/*.js',
           '!<%= yeoman.client %>/{app,components}/**/*.spec.js',
           '!<%= yeoman.client %>/{app,components}/**/*.mock.js',
-          '!<%= yeoman.client %>/app/app.js'],
+          '!<%= yeoman.client %>/app/app.module.js'],
         tasks: ['injector:scripts']
       },
       injectCss: {
@@ -320,7 +320,7 @@ module.exports = function (grunt) {
           removeScriptTypeAttributes: true,
           removeStyleLinkTypeAttributes: true
         },
-        usemin: 'app/app.js'
+        usemin: 'app/app.module.js'
       },
       main: {
         cwd: '<%= yeoman.client %>',
@@ -396,6 +396,12 @@ module.exports = function (grunt) {
       openshift: {
         options: {
           remote: 'openshift',
+          branch: 'master'
+        }
+      },
+      azure: {
+        options: {
+          remote: 'https://rd-deployment@rd-photography.scm.azurewebsites.net:443/rd-photography.git',
           branch: 'master'
         }
       }
@@ -497,7 +503,7 @@ module.exports = function (grunt) {
         files: {
           '<%= yeoman.client %>/index.html': [
               ['{.tmp,<%= yeoman.client %>}/{app,components}/**/*.js',
-               '!{.tmp,<%= yeoman.client %>}/app/app.js',
+               '!{.tmp,<%= yeoman.client %>}/app/app.module.js',
                '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.spec.js',
                '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js']
             ]
