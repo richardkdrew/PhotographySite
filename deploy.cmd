@@ -97,6 +97,7 @@ call :SelectNodeVersion
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
   echo Starting Node module install %TIME%
+  call :ExecuteCmd !NPM_CMD! cache clean
   call :ExecuteCmd !NPM_CMD! install --production
   echo Completed Node module install %TIME%
   IF !ERRORLEVEL! NEQ 0 goto error
