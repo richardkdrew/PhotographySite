@@ -5,7 +5,7 @@
     /*
      * Application core modules
      */
-
+    'app.core'
     /*
      * Feature areas
      */
