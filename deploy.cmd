@@ -101,7 +101,7 @@ call :SelectNodeVersion
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
   echo Starting Node module install %TIME%
-  call :ExecuteCmd !NPM_CMD! install
+  call :ExecuteCmd !NPM_CMD! install --production
   echo Completed Node module install %TIME%
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
@@ -124,6 +124,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
 IF EXIST "%DEPLOYMENT_TARGET%\Gruntfile.js" (
   pushd "%DEPLOYMENT_TARGET%"
   echo Starting Grunt install %TIME%
+  call :ExecuteCmd !NPM_CMD! install --development
   call :ExecuteCmd !NPM_CMD! install grunt-cli
   echo Completed Grunt install %TIME%
   echo Starting Grunt build %TIME%
@@ -132,6 +133,7 @@ IF EXIST "%DEPLOYMENT_TARGET%\Gruntfile.js" (
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
+
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
