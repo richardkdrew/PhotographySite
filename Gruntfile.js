@@ -492,7 +492,7 @@ module.exports = function (grunt) {
       // Inject application script files into index.html (doesn't include bower)
       scripts: {
         options: {
-          sort: function (a, b) {
+          /*sort: function (a, b) {
             var result;
             if (a.indexOf('module.js') >= 0)
               result = -1;
@@ -503,7 +503,7 @@ module.exports = function (grunt) {
             else
               result = a.localeCompare(b);
             return result;
-          },
+          },*/
           transform: function(filePath) {
             filePath = filePath.replace('/client/', '');
             filePath = filePath.replace('/.tmp/', '');
@@ -514,10 +514,13 @@ module.exports = function (grunt) {
         },
         files: {
           '<%= yeoman.client %>/index.html': [
-              ['{.tmp,<%= yeoman.client %>}/{app,components}/**/*.js',
-               '!{.tmp,<%= yeoman.client %>}/app/app.module.js',
-               '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.spec.js',
-               '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js']
+              ['{.tmp,<%= yeoman.client %>}/{app,components}/**/*.module.js',
+                '{.tmp,<%= yeoman.client %>}/{app,components}/**/*.service.js',
+                '{.tmp,<%= yeoman.client %>}/{app,components}/**/*.controller.js',
+                '{.tmp,<%= yeoman.client %>}/{app,components}/**/*.js',
+                '!{.tmp,<%= yeoman.client %>}/app/app.module.js',
+                '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.spec.js',
+                '!{.tmp,<%= yeoman.client %>}/{app,components}/**/*.mock.js']
             ]
         }
       },
