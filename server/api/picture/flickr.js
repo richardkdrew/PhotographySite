@@ -23,22 +23,21 @@ var FlickrLoader = function (page, per_page) {
 FlickrLoader.prototype.mapToResponse = mapToResponse;
 
 function mapToResponse(data) {
-  var data = JSON.parse(data);
+  var payload = JSON.parse(data);
 
   return {
-    "pictures": mapPictures(data.photos.photo),
+    "pictures": mapPictures(payload.photos.photo),
     "meta": {
       "paging": {
-        "perpage": data.photos.perpage,
-        "page": data.photos.page,
-        "pages": data.photos.pages,
-        "total": data.photos.total
-      }
-      ,
+        "perpage": payload.photos.perpage,
+        "page": payload.photos.page,
+        "pages": payload.photos.pages,
+        "total": payload.photos.total
+      },
       "result": {
-        "status": data.stat,
-        "code": data.code,
-        "message": data.message
+        "status": payload.stat,
+        "code": payload.code,
+        "message": payload.message
       }
     }
   };

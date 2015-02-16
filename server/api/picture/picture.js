@@ -12,7 +12,7 @@ Picture.prototype.get = function (id) {
 };
 
 Picture.prototype.set = function (id, value) {
-  return this.data[id] = value;
+  this.data[id] = value;
 };
 
 // Title
@@ -21,7 +21,7 @@ Picture.prototype.get = function (title) {
 };
 
 Picture.prototype.set = function (title, value) {
-  return this.data[title] = value;
+  this.data[title] = value;
 };
 
 // Url
@@ -30,7 +30,7 @@ Picture.prototype.get = function (url) {
 };
 
 Picture.prototype.set = function (url, value) {
-  return this.data[url] = value;
+  this.data[url] = value;
 };
 
 // Width
@@ -39,7 +39,7 @@ Picture.prototype.get = function (width) {
 };
 
 Picture.prototype.set = function (width, value) {
-  return this.data[width] = value;
+  this.data[width] = value;
 };
 
 // Height
@@ -48,7 +48,7 @@ Picture.prototype.get = function (height) {
 };
 
 Picture.prototype.set = function (height, value) {
-  return this.data[height] = value;
+  this.data[height] = value;
 };
 
 module.exports = Picture;
