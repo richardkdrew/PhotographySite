@@ -97,7 +97,6 @@ echo Installing npm dev dependencies.
 IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   pushd "%DEPLOYMENT_SOURCE%"
   echo Start npm dev dependency install %TIME%
-  call !NPM_CMD! cache clean
   call !NPM_CMD! install --development
   echo Finish npm dev dependency install %TIME%
   IF !ERRORLEVEL! NEQ 0 goto error
