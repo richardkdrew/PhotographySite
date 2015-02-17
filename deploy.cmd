@@ -107,8 +107,10 @@ IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
 echo Installing bower dependencies.
 IF EXIST "%DEPLOYMENT_SOURCE%\bower.json" (
   pushd "%DEPLOYMENT_SOURCE%"
-  echo Start bower dependency install %TIME%
+  echo Start bower install %TIME%
   call :ExecuteCmd !NPM_CMD! install bower
+  echo Finish bower install %TIME%
+  echo Start bower dependency install %TIME%
   call :ExecuteCmd "%NODE_EXE%" node_modules\bower\bin\bower install
   echo Finish bower dependency install %TIME%
   IF !ERRORLEVEL! NEQ 0 goto error
@@ -119,8 +121,10 @@ IF EXIST "%DEPLOYMENT_SOURCE%\bower.json" (
 echo Running grunt build.
 IF EXIST "%DEPLOYMENT_SOURCE%\Gruntfile.js" (
   pushd "%DEPLOYMENT_SOURCE%"
-  echo Start grunt build %TIME%
+  echo Start grunt install %TIME%
   call :ExecuteCmd !NPM_CMD! install grunt-cli
+  echo Finish grunt install %TIME%
+  echo Start grunt build %TIME%
   call :ExecuteCmd "%NODE_EXE%" node_modules\grunt-cli\bin\grunt build --no-color
   echo Finish grunt build %TIME%
   IF !ERRORLEVEL! NEQ 0 goto error
