@@ -94,8 +94,8 @@ call :SelectNodeVersion
 
 :: 2. Install npm packages
 echo Installing npm dev dependencies.
-IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
-  pushd "%DEPLOYMENT_TARGET%"
+IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
+  pushd "%DEPLOYMENT_SOURCE%"
   echo Start npm dev dependency install %TIME%
   call !NPM_CMD! cache clean
   call !NPM_CMD! install --development
@@ -106,8 +106,8 @@ IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
 
 :: 3. Install bower packages
 echo Installing bower dependencies.
-IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
-  pushd "%DEPLOYMENT_TARGET%"
+IF EXIST "%DEPLOYMENT_SOURCE%\bower.json" (
+  pushd "%DEPLOYMENT_SOURCE%"
   echo Start bower dependency install %TIME%
   call :ExecuteCmd !NPM_CMD! install bower
   call :ExecuteCmd "%NODE_EXE%" node_modules\bower\bin\bower install
@@ -118,8 +118,8 @@ IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
 
 :: 4. Run Grunt
 echo Running grunt build.
-IF EXIST "%DEPLOYMENT_TARGET%\Gruntfile.js" (
-  pushd "%DEPLOYMENT_TARGET%"
+IF EXIST "%DEPLOYMENT_SOURCE%\Gruntfile.js" (
+  pushd "%DEPLOYMENT_SOURCE%"
   echo Start grunt build %TIME%
   call :ExecuteCmd !NPM_CMD! install grunt-cli
   call :ExecuteCmd "%NODE_EXE%" node_modules\grunt-cli\bin\grunt build --no-color
