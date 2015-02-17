@@ -138,6 +138,17 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
   IF !ERRORLEVEL! NEQ 0 goto error
 )
 
+:: 6. Install npm packages
+echo Installing npm dependencies.
+IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
+  pushd "%DEPLOYMENT_TARGET%"
+  echo Start npm dependency install %TIME%
+  call !NPM_CMD! install --production
+  echo Finish npm dependency install %TIME%
+  IF !ERRORLEVEL! NEQ 0 goto error
+  popd
+)
+
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 :: Post deployment stub
@@ -156,7 +167,7 @@ exit /b %ERRORLEVEL%
 
 :error
 endlocal
-echo An error has occurred during web site deployment.
+echo An error has occurred during web site deployment %TIME%
 call :exitSetErrorLevel
 call :exitFromFunction 2>nul
 
@@ -168,4 +179,4 @@ exit /b 1
 
 :end
 endlocal
-echo Finished successfully.
+echo Finished successfully %TIME%
