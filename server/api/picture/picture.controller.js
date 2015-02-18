@@ -17,8 +17,9 @@ exports.index = index;
 
   function index(req, res) {
 
-    var page = req.params.page;
-    var per_page = req.params.perpage;
+    // Set up some default parameters
+    var page = req.params.page || 1;
+    var per_page = req.params.perpage || 5;
 
     // Set up the flickr loader
     var flickr = new FlickrLoader(page, per_page);
