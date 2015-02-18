@@ -370,7 +370,8 @@ module.exports = function (grunt) {
             'server/**/*',
             'web.config'
           ]
-        }]
+        }
+        ]
       },
       styles: {
         expand: true,
