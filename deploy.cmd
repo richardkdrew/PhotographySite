@@ -99,9 +99,6 @@ IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   echo Start npm dependency install %TIME%
   call !NPM_CMD! install --development
   echo Finish npm dependency install %TIME%
-  IF !ERRORLEVEL! NEQ 0 goto error
-  popd
-)
 
 :: 3. Install bower packages
 echo Installing bower dependencies.
@@ -113,9 +110,6 @@ IF EXIST "%DEPLOYMENT_SOURCE%\bower.json" (
   echo Start bower dependency install %TIME%
   call :ExecuteCmd "%NODE_EXE%" node_modules\bower\bin\bower install
   echo Finish bower dependency install %TIME%
-  IF !ERRORLEVEL! NEQ 0 goto error
-  popd
-)
 
 :: 4. Run Grunt
 echo Running grunt build.
@@ -127,16 +121,11 @@ IF EXIST "%DEPLOYMENT_SOURCE%\Gruntfile.js" (
   echo Start grunt build %TIME%
   call :ExecuteCmd "%NODE_EXE%" node_modules\grunt-cli\bin\grunt build --no-color
   echo Finish grunt build %TIME%
-  IF !ERRORLEVEL! NEQ 0 goto error
-  popd
-)
 
 :: 5. KuduSync
 echo Running KuduSync.
 IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
   call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%\dist" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
-  IF !ERRORLEVEL! NEQ 0 goto error
-)
 
 :: 6. Install npm packages
 echo Installing npm dependencies.
