@@ -97,7 +97,7 @@ echo Installing npm dependencies.
 IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   pushd "%DEPLOYMENT_SOURCE%"
   echo Start npm dependency install %TIME%
-  call !NPM_CMD! install
+  call !NPM_CMD! install --development
   echo Finish npm dependency install %TIME%
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
