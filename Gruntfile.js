@@ -494,6 +494,18 @@ module.exports = function (grunt) {
       // Inject application script files into index.html (doesn't include bower)
       scripts: {
         options: {
+          sort: function (a, b) {
+            var result;
+            if (a.indexOf('module.js') >= 0)
+              result = -1;
+            else if (b.indexOf('module.js') >= 0)
+              result = 1;
+            else if (a.indexOf('module.js') >= 0 && b.indexOf('module.js') >= 0)
+              result = 0;
+            else
+              result = a.localeCompare(b);
+            return result;
+          },
           transform: function(filePath) {
             filePath = filePath.replace('/client/', '');
             filePath = filePath.replace('/.tmp/', '');

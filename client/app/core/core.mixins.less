@@ -1,0 +1,19 @@
+.column-count(@columns, @width, @gap) {
+  -moz-column-count:@columns;
+  -moz-column-gap: @gap;
+  -moz-column-width: @width;
+  -webkit-column-count:@columns;
+  -webkit-column-gap: @gap;
+  -webkit-column-width: @width;
+  column-count: @columns;
+  column-gap: @gap;
+  column-width: @width;
+}
+
+.vertical-center() {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
