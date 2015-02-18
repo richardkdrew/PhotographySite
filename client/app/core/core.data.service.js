@@ -18,7 +18,7 @@
     function getPictures() {
       var deferred = $q.defer();
 
-      $http.get('api/pictures/page/1/perpage/5')
+      $http.get('api/pictures')
         .success(getPicturesComplete)
         .error(getPicturesFailed);
 
