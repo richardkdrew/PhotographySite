@@ -367,9 +367,11 @@ module.exports = function (grunt) {
           dest: '<%= yeoman.dist %>',
           src: [
             'package.json',
-            'server/**/*'
+            'server/**/*',
+            'web.config'
           ]
-        }]
+        }
+        ]
       },
       styles: {
         expand: true,
@@ -410,10 +412,10 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
-        'less',
+        'less'
       ],
       test: [
-        'less',
+        'less'
       ],
       debug: {
         tasks: [

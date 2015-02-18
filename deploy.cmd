@@ -87,50 +87,67 @@ goto :EOF
 
 :Deployment
 echo Handling node.js deployment.
+echo %DEPLOYMENT_SOURCE%
 
-:: 1. KuduSync
-IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
-  call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
-  IF !ERRORLEVEL! NEQ 0 goto error
-)
-
-:: 2. Select node version
+:: 1. Select node version
 call :SelectNodeVersion
 
-:: 3. Install npm packages
+:: 2. Install npm packages
+echo Installing npm dependencies.
+IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
+  pushd "%DEPLOYMENT_SOURCE%"
+  echo Start npm dependency install %TIME%
+  call !NPM_CMD! install --development
+  echo Finish npm dependency install %TIME%
+  IF !ERRORLEVEL! NEQ 0 goto error
+  popd
+)
+
+:: 3. Install bower packages
+echo Installing bower dependencies.
+IF EXIST "%DEPLOYMENT_SOURCE%\bower.json" (
+  pushd "%DEPLOYMENT_SOURCE%"
+  echo Start bower install %TIME%
+  call :ExecuteCmd !NPM_CMD! install bower
+  echo Finish bower install %TIME%
+  echo Start bower dependency install %TIME%
+  call :ExecuteCmd "%NODE_EXE%" node_modules\bower\bin\bower install
+  echo Finish bower dependency install %TIME%
+  IF !ERRORLEVEL! NEQ 0 goto error
+  popd
+)
+
+:: 4. Run Grunt
+echo Running grunt build.
+IF EXIST "%DEPLOYMENT_SOURCE%\Gruntfile.js" (
+  pushd "%DEPLOYMENT_SOURCE%"
+  echo Start grunt install %TIME%
+  call :ExecuteCmd !NPM_CMD! install grunt-cli
+  echo Finish grunt install %TIME%
+  echo Start grunt build %TIME%
+  call :ExecuteCmd "%NODE_EXE%" node_modules\grunt-cli\bin\grunt build --no-color
+  echo Finish grunt build %TIME%
+  IF !ERRORLEVEL! NEQ 0 goto error
+  popd
+)
+
+:: 5. KuduSync
+echo Running KuduSync.
+IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
+  call :ExecuteCmd "%KUDU_SYNC_CMD%" -v 50 -f "%DEPLOYMENT_SOURCE%\dist" -t "%DEPLOYMENT_TARGET%" -n "%NEXT_MANIFEST_PATH%" -p "%PREVIOUS_MANIFEST_PATH%" -i ".git;.hg;.deployment;deploy.cmd"
+  IF !ERRORLEVEL! NEQ 0 goto error
+)
+
+:: 6. Install npm packages
+echo Installing npm dependencies.
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd !NPM_CMD! install --production
+  echo Start npm dependency install %TIME%
+  call !NPM_CMD! install --production
+  echo Finish npm dependency install %TIME%
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
-
-:: 4. Install bower packages
-IF EXIST "%DEPLOYMENT_TARGET%\bower.json" (
-  pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd !NPM_CMD! install bower
-  call :ExecuteCmd "%NODE_EXE%" node_modules\bower\bin\bower install
-  IF !ERRORLEVEL! NEQ 0 goto error
-  popd
-)
-
-:: 5. Run Grunt
-IF EXIST "%DEPLOYMENT_TARGET%\Gruntfile.js" (
-  pushd "%DEPLOYMENT_TARGET%"
-  call :ExecuteCmd !NPM_CMD! install --development
-  call :ExecuteCmd !NPM_CMD! install grunt-cli
-  call :ExecuteCmd "%NODE_EXE%" node_modules\grunt-cli\bin\grunt build --no-color
-  IF !ERRORLEVEL! NEQ 0 goto error
-  popd
-)
-
-:: grunt-cli
-:: grunt
-:: jit-grunt
-:: time-grunt
-:: jshint-stylish
-::
-
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -150,7 +167,7 @@ exit /b %ERRORLEVEL%
 
 :error
 endlocal
-echo An error has occurred during web site deployment.
+echo An error has occurred during web site deployment %TIME%
 call :exitSetErrorLevel
 call :exitFromFunction 2>nul
 
@@ -162,4 +179,4 @@ exit /b 1
 
 :end
 endlocal
-echo Finished successfully.
+echo Finished successfully %TIME%
