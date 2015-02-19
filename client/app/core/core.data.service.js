@@ -15,10 +15,16 @@
 
     return service;
 
-    function getPictures() {
+    function getPictures(pageNumber, perPage) {
       var deferred = $q.defer();
 
-      $http.get('api/pictures')
+      pageNumber = pageNumber | 1;
+      perPage = perPage | 5;
+
+      console.log('perpage ' + perPage);
+      console.log('page ' + pageNumber);
+
+      $http.get('api/pictures/page/' + pageNumber +'/perpage/' + perPage)
         .success(getPicturesComplete)
         .error(getPicturesFailed);
 
@@ -27,7 +33,7 @@
       }
 
       function getPicturesFailed(data, code) {
-        $log.error('XHR Failed for getPictures.' + data, code);
+        console.error('XHR Failed for getPictures.' + data, code);
         deferred.reject(data);
       }
 

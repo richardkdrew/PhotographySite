@@ -26,15 +26,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <span class="comingSoon">Coming Soon...</span>
-
-    <header>
-      <ul>
-        <li class="comingSoon">
-          Coming Soon...
-        </li>
-      </ul>
-    </header>
+    <section ng-view=""></section>
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -46,6 +38,7 @@
       <script src="bower_components/angular/angular.js"></script>
       <script src="bower_components/angular-route/angular-route.js"></script>
       <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+      <script src="bower_components/nginfinitescroll/build/ng-infinite-scroll.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
 
@@ -53,7 +46,10 @@
         <script src="app/app.module.js"></script>
           <!-- injector:js -->
           <script src="app/core/core.module.js"></script>
+          <script src="app/pictures/pictures.module.js"></script>
+          <script src="app/app.route.js"></script>
           <script src="app/core/core.data.service.js"></script>
+          <script src="app/pictures/pictures.controller.js"></script>
           <!-- endinjector -->
         <!-- endbuild -->
 </body>

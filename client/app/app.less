@@ -11,6 +11,7 @@
 
 // injector
 @import 'core/core.mixins.less';
+@import 'pictures/pictures.less';
 // endinjector
 
 html, body, div, span, applet, object, iframe,
@@ -67,13 +68,28 @@ header {
 }
 
 header {
+  display: none;
+  z-index: 10000;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 2em;
+  height: 3em;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  border: solid 1px #777;
+  border-left: 0;
+  border-right: 0;
+}
+
+header {
   ul {
-    float: left;
+    float: right;
     list-style-type: none;
     margin: 0;
     padding: 0;
     height: 100%;
-    margin-left: 2em;
+    margin-right: 2em;
 
     li {
       display: inline-block;
@@ -81,6 +97,23 @@ header {
       .vertical-center;
 
       text-align: center;
+      width: 6em;
+
+      a {
+        display: block;
+        line-height: 3em;
+        color: #777;
+        cursor: pointer;
+        cursor: hand;
+      }
+      :hover {
+        background-color: #777;
+        color: powderblue;
+      }
+      :active {
+        background-color: #777;
+        color: yellow;
+      }
     }
     :last-child:after {
       content: "";
@@ -88,20 +121,7 @@ header {
       clear: both;
     }
   }
-}
 
-span {
-  display: block;
-  height: 3em;
-  width: 100%;
-
-  .vertical-center;
-
-  text-align: center;
-}
-
-.comingSoon {
-  font-size: 150%;
 }
 
 section {
@@ -120,10 +140,6 @@ section {
 
   header {
     display: block;
-  }
-
-  span {
-    display: none;
   }
 
 }

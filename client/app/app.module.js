@@ -5,11 +5,11 @@
     /*
      * Application core modules
      */
-    'app.core'
+    'app.core',
     /*
      * Feature areas
      */
-
+    'app.pictures'
   ]);
 })();
 
