@@ -37,7 +37,7 @@ exports.index = index;
         }
         else {
           var pictures = payload.pictures;
-          console.log(pictures);
+          //console.log(pictures);
           res.json(pictures);
         }
       }

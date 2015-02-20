@@ -1,19 +1,15 @@
-<div ng-controller="Pictures as vm" class="pictures-view">
+<div class="pictures-view">
 
   <div class="grid">
     <div ng-repeat='picture in vm.pictures' class="item">
-      <!--<img ng-src="{{ picture.data.url}}" alt="{{ picture.data.title }}" />-->
-      {{picture.data.url}}
+      <img ng-src="{{ picture.data.url}}" alt="{{ picture.data.title }}" />
     </div>
   </div>
+  <!--{{vm.pictures}}-->
 
-  {{vm.pictures}}
-
-  <div ng-switch='vm.busy'>
-    <div ng-switch-when='true'>Loading more pictures...</div>
+  <div ng-switch='vm.loading' class="load-more-container">
+    <div ng-switch-when='true'><img ng-src="/assets/images/spinner.gif" alt="Loading more pictures..." /></div>
     <div ng-switch-default><a ng-click='vm.loadMore()'>Load more pictures</a> </div>
   </div>
-
-  <!--<div ng-show='vm.busy'>Loading data...</div>-->
 
 </div>

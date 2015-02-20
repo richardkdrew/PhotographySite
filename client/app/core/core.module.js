@@ -5,7 +5,7 @@
     /*
      * Angular modules
      */
-    'ngRoute',
+    'ngRoute'//,
     //'ngAnimate',
     /*
      * Reusable cross-app components
@@ -13,6 +13,6 @@
     /*
      * 3rd Party components
      */
-    'infinite-scroll'
+    //'infinite-scroll'
   ]);
 })();

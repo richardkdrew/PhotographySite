@@ -11,8 +11,7 @@
 
     var vm = this;
     vm.pictures = [];
-    vm.title = 'Pictures';
-    vm.currentPage = 0;
+    vm.currentPage = 1;
     vm.loadMore = loadMore;
     vm.loading = false;
 
@@ -25,40 +24,50 @@
       });
     }
 
-    function getPictures(pageNumber, perPage) {
+    function getPictures() {
+
+      var pageNumber = vm.currentPage;
+      console.info("PageNumber was: " + pageNumber);
+
       if (vm.loading) return;
       vm.loading = true;
 
-      return dataService.getPictures(pageNumber, perPage).then(function (data) {
+      return dataService.getPictures(pageNumber).then(function (data) {
+
         for (var i = 0; i < data.length; i++) {
           //console.info(data[i].data);
           vm.pictures.push(data[i]);
         }
-        vm.currentPage = pageNumber;
+        vm.currentPage = pageNumber + 1;
         vm.loading = false;
-        //vm.pictures = data;
-        //return vm.pictures;
+        console.info("PageNumber is: " + vm.currentPage);
       })
     }
 
     function loadMore() {
+      //var pageNumber = Number(vm.currentPage + 1);
+      return getPictures().then(function() {
+        console.info('Loaded more Pictures');
+      });
+    }
+
+    /*function loadMore() {
       getPictures(vm.currentPage + 1);
 
-      /*if (vm.loading) return;
-      vm.loading = true;
-
-      var pageNumber = vm.currentPage + 1;
-      //console.info('Loading ' + pageNumber);
-      return dataService.getPictures(pageNumber).then(function (data) {
-        for (var i = 0; i < data.length; i++) {
-          //console.info(data[i].data);
-          vm.pictures.push(data[i]);
-        }
-        vm.currentPage = pageNumber;
-        vm.loading = false;
-        //console.info(pageNumber + ' loaded');
-        //return vm.pictures;
-      });*/
-    }
+      if (vm.loading) return;
+       vm.loading = true;
+       var pageNumber = vm.currentPage + 1;
+       //console.info('Loading ' + pageNumber);
+       return dataService.getPictures(pageNumber).then(function (data) {
+       for (var i = 0; i < data.length; i++) {
+       //console.info(data[i].data);
+       vm.pictures.push(data[i]);
+       }
+       vm.currentPage = pageNumber;
+       vm.loading = false;
+       //console.info(pageNumber + ' loaded');
+       //return vm.pictures;
+       });
+    }*/
   }
 })();
