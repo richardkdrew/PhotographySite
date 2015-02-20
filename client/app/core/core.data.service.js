@@ -8,6 +8,9 @@
   dataService.$inject = ['$http', '$q'];
 
   function dataService($http, $q) {
+    var self = this;
+    self.nextPage = 1;
+    self.perPage = 5;
 
     var service = {
       getPictures     : getPictures
@@ -15,27 +18,29 @@
 
     return service;
 
-    function getPictures(pageNumber, perPage) {
+    function getPictures(page, perPage) {
       var deferred = $q.defer();
 
-      pageNumber = pageNumber || 1;
-      perPage = perPage || 5;
+      // Set to default is no paging params are supplied
+      page = page || self.nextPage;
+      perPage = perPage || self.perPage;
 
       var params = {
-        page: pageNumber,
+        page: page,
         per_page: perPage
       };
 
+      /*
+      console.info('page ' + page);
       console.info('perpage ' + perPage);
-      console.info('page ' + pageNumber);
-
-      console.info('params ' + params);
+      */
 
       $http.get('api/pictures', { params: params } )
         .success(getPicturesComplete)
         .error(getPicturesFailed);
 
       function getPicturesComplete(data) {
+        self.nextPage += 1;
         deferred.resolve(data);
       }
 

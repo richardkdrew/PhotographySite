@@ -26,7 +26,11 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <section ng-view=""></section>
+    <section ng-if="false" class="loading-screen">
+      &nbsp;
+    </section>
+
+    <section ng-view="" class="content"></section>
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -49,7 +53,9 @@
           <script src="app/pictures/pictures.module.js"></script>
           <script src="app/app.route.js"></script>
           <script src="app/core/core.data.service.js"></script>
+          <script src="app/pictures/picture.directive.js"></script>
           <script src="app/pictures/pictures.controller.js"></script>
+          <script src="app/pictures/pictures.service.js"></script>
           <!-- endinjector -->
         <!-- endbuild -->
 </body>

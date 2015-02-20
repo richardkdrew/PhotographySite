@@ -11,7 +11,6 @@
 
     var vm = this;
     vm.pictures = [];
-    vm.currentPage = 1;
     vm.loadMore = loadMore;
     vm.loading = false;
 
@@ -25,18 +24,12 @@
 
     function getPictures() {
 
-      //console.info("PageNumber was: " + vm.currentPage);
-
       if (vm.loading) return;
       vm.loading = true;
 
-      return dataService.getPictures(vm.currentPage).then(function (data) {
-        for (var i = 0; i < data.length; i++) {
-          vm.pictures.push(data[i]);
-        }
-        vm.currentPage += 1;
+      return dataService.getPictures().then(function (data) {
+        addPictures(data);
         vm.loading = false;
-        //console.info("PageNumber is: " + vm.currentPage);
         return vm.pictures;
       })
     }
@@ -45,6 +38,13 @@
       return getPictures().then(function() {
         console.info('Loaded more Pictures');
       });
+    }
+
+    function addPictures(pictures)
+    {
+      for (var i = 0; i < pictures.length; i++) {
+        vm.pictures.push(pictures[i]);
+      }
     }
   }
 })();

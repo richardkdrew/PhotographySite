@@ -3,13 +3,14 @@
   <div class="grid">
     <div ng-repeat='picture in vm.pictures' class="item">
       <img ng-src="{{ picture.data.url}}" alt="{{ picture.data.title }}" />
+      <!--<my-picture picture="picture" />-->
     </div>
   </div>
   <!--{{vm.pictures}}-->
-<div class="clear"></div>
+
   <div ng-switch='vm.loading' class="load-more-container">
     <div ng-switch-when='true'><img ng-src="/assets/images/spinner.gif" alt="Loading more pictures..." /></div>
-    <div ng-switch-default><a ng-click='vm.loadMore()'>Load more pictures</a> </div>
+    <div ng-switch-default class="load-more"><a ng-click='vm.loadMore()'>Load more pictures</a> </div>
   </div>
 
 </div>

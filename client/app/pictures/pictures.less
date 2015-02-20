@@ -1,6 +1,6 @@
 .grid {
   width: 100%;
-  float:left;
+  /*float:left;*/
   margin-bottom: 0;
   .column-count(auto, 20em, 0);
 }
@@ -22,17 +22,16 @@
 }
 
 .grid:after {
-  content: "";
-  display: table;
-  clear: both;
+  .clear;
 }
 
 .item .picture {
   width: 100%;
 }
 
-.load-more-container {
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
+.loading {
+  border: dashed 1px #777;
+  background: #000 url('/assets/images/spinner.gif') no-repeat center center;
 }
+
+
