@@ -10,7 +10,7 @@ var FlickrLoader = function (page, per_page) {
     qs: {
       method: 'flickr.photos.search',
       api_key: '36862b3eb779f31ad749a8b561b730b6',
-      tags: 'aston+martin',
+      tags: 'aston+martin+vantage',
       format: 'json',
       extras: 'url_sq, url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l, url_o',
       nojsoncallback: 1,

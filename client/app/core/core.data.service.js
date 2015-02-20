@@ -18,13 +18,20 @@
     function getPictures(pageNumber, perPage) {
       var deferred = $q.defer();
 
-      pageNumber = pageNumber | 1;
-      perPage = perPage | 5;
+      pageNumber = pageNumber || 1;
+      perPage = perPage || 5;
 
-      console.log('perpage ' + perPage);
-      console.log('page ' + pageNumber);
+      var params = {
+        page: pageNumber,
+        per_page: perPage
+      };
 
-      $http.get('api/pictures/page/' + pageNumber +'/perpage/' + perPage)
+      console.info('perpage ' + perPage);
+      console.info('page ' + pageNumber);
+
+      console.info('params ' + params);
+
+      $http.get('api/pictures', { params: params } )
         .success(getPicturesComplete)
         .error(getPicturesFailed);
 

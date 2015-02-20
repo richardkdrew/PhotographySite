@@ -5,9 +5,9 @@
     .module('app.pictures')
     .controller('Pictures', Pictures);
 
-  Pictures.$inject = ['$q', 'dataService'];
+  Pictures.$inject = ['dataService'];
 
-  function Pictures($q, dataService) {
+  function Pictures(dataService) {
 
     var vm = this;
     vm.pictures = [];
@@ -18,56 +18,33 @@
     activate();
 
     function activate() {
-      var promises = [getPictures()];
-      return $q.all(promises).then(function() {
+      return getPictures().then(function() {
         console.info('Activated Pictures View');
       });
     }
 
     function getPictures() {
 
-      var pageNumber = vm.currentPage;
-      console.info("PageNumber was: " + pageNumber);
+      //console.info("PageNumber was: " + vm.currentPage);
 
       if (vm.loading) return;
       vm.loading = true;
 
-      return dataService.getPictures(pageNumber).then(function (data) {
-
+      return dataService.getPictures(vm.currentPage).then(function (data) {
         for (var i = 0; i < data.length; i++) {
-          //console.info(data[i].data);
           vm.pictures.push(data[i]);
         }
-        vm.currentPage = pageNumber + 1;
+        vm.currentPage += 1;
         vm.loading = false;
-        console.info("PageNumber is: " + vm.currentPage);
+        //console.info("PageNumber is: " + vm.currentPage);
+        return vm.pictures;
       })
     }
 
     function loadMore() {
-      //var pageNumber = Number(vm.currentPage + 1);
       return getPictures().then(function() {
         console.info('Loaded more Pictures');
       });
     }
-
-    /*function loadMore() {
-      getPictures(vm.currentPage + 1);
-
-      if (vm.loading) return;
-       vm.loading = true;
-       var pageNumber = vm.currentPage + 1;
-       //console.info('Loading ' + pageNumber);
-       return dataService.getPictures(pageNumber).then(function (data) {
-       for (var i = 0; i < data.length; i++) {
-       //console.info(data[i].data);
-       vm.pictures.push(data[i]);
-       }
-       vm.currentPage = pageNumber;
-       vm.loading = false;
-       //console.info(pageNumber + ' loaded');
-       //return vm.pictures;
-       });
-    }*/
   }
 })();
