@@ -11,7 +11,7 @@
     return {
       restrict: 'AE',
       replace: true,
-      templateUrl: '/app/pictures/image-loader.html',
+      templateUrl: 'app/pictures/image-loader.html',
       scope: {
         picture: '='
       },
