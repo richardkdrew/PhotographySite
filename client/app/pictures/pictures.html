@@ -2,8 +2,10 @@
 
   <div class="grid">
     <div ng-repeat='picture in vm.pictures' class="item">
-      <img ng-src="{{ picture.data.url}}" alt="{{ picture.data.title }}" />
-      <!--<my-picture picture="picture" />-->
+      <!--<img ng-src="{{ picture.data.url}}" alt="{{ picture.data.title }}" />-->
+      <image-loader picture="picture" />
+      <!--<img onload="this.style.opacity='1';" class="picture" ng-src="{{picture.data.url}}" ng-alt="{{picture.data.title}}" alt="Loading..." src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />-->
+
     </div>
   </div>
   <!--{{vm.pictures}}-->

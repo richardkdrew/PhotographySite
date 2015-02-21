@@ -23,19 +23,19 @@
     }
 
     function getPictures() {
-
-      if (vm.loading) return;
-      vm.loading = true;
-
       return dataService.getPictures().then(function (data) {
         addPictures(data);
-        vm.loading = false;
         return vm.pictures;
       })
     }
 
     function loadMore() {
+
+      if (vm.loading) return;
+      vm.loading = true;
+
       return getPictures().then(function() {
+        vm.loading = false;
         console.info('Loaded more Pictures');
       });
     }

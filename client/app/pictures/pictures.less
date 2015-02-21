@@ -21,16 +21,25 @@
   width: 100%;
 }
 
-.grid:after {
+/*.grid:after {
   .clear;
-}
+}*/
 
-.item .picture {
+.item.picture, .item.loading {
   width: 100%;
 }
 
+.item .picture img {
+  opacity: 0;
+  -moz-transition: opacity 2s; /* Firefox 4 */
+  -webkit-transition: opacity 2s; /* Safari and Chrome */
+  -o-transition: opacity 2s;
+  transition: opacity 2s;
+}
+
 .loading {
-  border: dashed 1px #777;
+  /*border: dashed 1px #777;*/
+  /*background: rgba(255, 255, 255, 0.5) url('/assets/images/spinner.gif') no-repeat center center;*/
   background: #000 url('/assets/images/spinner.gif') no-repeat center center;
 }
 
