@@ -1,4 +1,4 @@
-<div class="pictures-view">
+<div class="pictures-view" when-scrolled='vm.loadMore()'>
 
   <div class="grid">
     <div ng-repeat='picture in vm.pictures' class="item">
@@ -10,9 +10,9 @@
   <!--{{vm.pictures}}-->
 
 
-  <div ng-switch="vm.loading" ng-if="vm.isMobile" class="load-more-container">
+  <!--<div ng-switch="vm.loading" ng-if="vm.isMobile" class="load-more-container">
     <div ng-switch-when='true'><img ng-src="/assets/images/spinner.gif" alt="Loading more pictures..." /></div>
     <div ng-switch-default class="load-more"><a ng-click='vm.loadMore()'>Load more pictures</a> </div>
-  </div>
+  </div>-->
 
 </div>

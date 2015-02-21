@@ -10,7 +10,7 @@
   function dataService($http, $q, detectionService) {
     var self = this;
     self.nextPage = 1;
-    self.perPage = 100;
+    self.perPage = 50;
 
     var service = {
       getPictures     : getPictures
