@@ -145,6 +145,20 @@ section {
   /*background-color: #555;*/
 }
 
+.mobile-device {
+  background-color: red;
+  height: 2em;
+  color: green;
+  display: block;
+}
+
+.other-device {
+  background-color: yellow;
+  height: 2em;
+  color: green;
+  display: none;
+}
+
 /* ===== == = === 37.5em (600px) === = == ===== */
 
 @media only screen and (min-width: 37.5em) {
@@ -155,6 +169,14 @@ section {
   }
 
   header {
+    display: block;
+  }
+
+  .mobile-device {
+    display: none;
+  }
+
+  .other-device {
     display: block;
   }
 

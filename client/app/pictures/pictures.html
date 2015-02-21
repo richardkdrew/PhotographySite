@@ -5,12 +5,12 @@
       <!--<img ng-src="{{ picture.data.url}}" alt="{{ picture.data.title }}" />-->
       <image-loader picture="picture" />
       <!--<img onload="this.style.opacity='1';" class="picture" ng-src="{{picture.data.url}}" ng-alt="{{picture.data.title}}" alt="Loading..." src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />-->
-
     </div>
   </div>
   <!--{{vm.pictures}}-->
 
-  <div ng-switch='vm.loading' class="load-more-container">
+
+  <div ng-switch="vm.loading" ng-if="vm.isMobile" class="load-more-container">
     <div ng-switch-when='true'><img ng-src="/assets/images/spinner.gif" alt="Loading more pictures..." /></div>
     <div ng-switch-default class="load-more"><a ng-click='vm.loadMore()'>Load more pictures</a> </div>
   </div>

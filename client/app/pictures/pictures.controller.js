@@ -5,14 +5,15 @@
     .module('app.pictures')
     .controller('Pictures', Pictures);
 
-  Pictures.$inject = ['dataService'];
+  Pictures.$inject = ['detectionService', 'dataService'];
 
-  function Pictures(dataService) {
+  function Pictures(detectionService, dataService) {
 
     var vm = this;
     vm.pictures = [];
     vm.loadMore = loadMore;
     vm.loading = false;
+    vm.isMobile = detectionService.isMobile();
 
     activate();
 
