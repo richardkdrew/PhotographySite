@@ -39,9 +39,9 @@ exports.index = index;
           return res.send(500, 'Internal Server Error');
         }
         else {
-          var pictures = payload.pictures;
+          //var pictures = payload.pictures;
           //console.log(pictures);
-          res.json(pictures);
+          res.json(payload);
         }
       }
     });

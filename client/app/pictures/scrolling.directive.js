@@ -13,7 +13,7 @@
     };
 
     function link(scope, element, attrs) {
-      console.info(element);
+      //console.info(element);
 
       var originalElement = element[0];
 

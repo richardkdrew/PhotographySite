@@ -29,10 +29,10 @@ function mapToResponse(data) {
     "pictures": mapPictures(payload.photos.photo),
     "meta": {
       "paging": {
-        "perpage": payload.photos.perpage,
-        "page": payload.photos.page,
-        "pages": payload.photos.pages,
-        "total": payload.photos.total
+        "perPage": payload.photos.perpage,
+        "currentPage": payload.photos.page,
+        "totalPages": payload.photos.pages,
+        "totalPictures": payload.photos.total
       },
       "result": {
         "status": payload.stat,
