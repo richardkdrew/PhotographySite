@@ -11,6 +11,7 @@
 
 // injector
 @import 'core/core.mixins.less';
+@import 'core/core.variables.less';
 @import 'development/development.less';
 @import 'pictures/pictures.less';
 // endinjector
@@ -29,8 +30,6 @@ ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size:100%;
-  font: inherit;
   vertical-align: baseline;
   border-image-width: 0;
 }
@@ -43,92 +42,21 @@ html, body, {
   width: 100%;
   height: 100%;
 
-  background-color: #000;
+  background-color: @main-background-color;
   /*background-color: orange;*/
 }
 
 body {
-  color: #fff;
+  color: @main-font-color;
   font-family: Arial, Helvetica, Geneva, sans-serif;
-  /*background-color: pink;*/
 }
-
-/*header {
-  display: none;
-  z-index: 10000;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  margin-bottom: 2em;
-  height: 3em;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  border: solid 1px #777;
-  border-left: 0;
-  border-right: 0;
-}
-
-header {
-  display: none;
-  z-index: 10000;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  margin-bottom: 2em;
-  height: 3em;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  border: solid 1px #777;
-  border-left: 0;
-  border-right: 0;
-}
-
-header {
-  ul {
-    float: right;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    margin-right: 2em;
-
-    li {
-      display: inline-block;
-
-      .vertical-center;
-
-      text-align: center;
-      width: 6em;
-
-      a {
-        display: block;
-        line-height: 3em;
-        color: #777;
-        cursor: pointer;
-        cursor: hand;
-      }
-      :hover {
-        background-color: #777;
-        color: powderblue;
-      }
-      :active {
-        background-color: #777;
-        color: yellow;
-      }
-    }
-    :last-child:after {
-      .clear;
-    }
-  }
-
-}*/
 
 section {
   height: 100%;
   width: 100%;
 }
 
-.menu {
+/*.menu {
   position: fixed;
   top: .25em;
   right: .25em;
@@ -136,14 +64,14 @@ section {
   color: #fff;
   font-size: 3em;
   line-height: 1em;
-  background-color: #222;
+  background-color: @main-background-color;
   padding: 0 5px;
   text-decoration: none;
-}
+}*/
 
 .loading-screen {
   position: absolute;
-  background: #222 url('/assets/images/spinner.gif') no-repeat center center;
+  background: @highlight-background-color url('/assets/images/spinner.gif') no-repeat center center;
 }
 
 .load-more-container {
@@ -157,25 +85,9 @@ section {
   width: 98%;
   padding: 1em 0;
   margin: .25em 1%;
-  background-color: #222;
+  background-color: @highlight-background-color;
   cursor: pointer;
 }
-
-
-
-/*.mobile-device {
-  background-color: red;
-  height: 2em;
-  color: green;
-  display: block;
-}
-
-.other-device {
-  background-color: yellow;
-  height: 2em;
-  color: green;
-  display: none;
-}*/
 
 /* ===== == = === 37.5em (600px) === = == ===== */
 
@@ -193,13 +105,4 @@ section {
   .load-more a:hover {
     color: powderblue;
   }
-
-  /*.mobile-device {
-    display: none;
-  }
-
-  .other-device {
-    display: block;
-  }*/
-
 }
