@@ -5,8 +5,8 @@
     /*
      * Angular modules
      */
-    'ngRoute'//,
-    //'ngAnimate',
+    'ngRoute',
+    'ngAnimate',
     /*
      * Reusable cross-app components
      */

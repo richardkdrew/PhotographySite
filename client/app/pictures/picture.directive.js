@@ -31,7 +31,7 @@
       image.alt = scope.picture.data.title;
 
       function imageLoadComplete() {
-        //console.info("Loaded picture " + image.alt);
+        console.info("Loaded picture " + scope.picture.index);
         scope.$apply(function(){
           scope.imageSrc = image.src;
           scope.isLoading = false;

@@ -45,7 +45,79 @@
 .loading {
   /*border: dashed 1px #777;*/
   /*background: rgba(255, 255, 255, 0.5) url('/assets/images/spinner.gif') no-repeat center center;*/
-  background: #000 url('/assets/images/spinner.gif') no-repeat center center;
+  background: #222 url('/assets/images/spinner.gif') no-repeat center center;
+}
+
+.picture-label {
+  position: relative;
+
+}
+
+
+/*  ng-repeat Animation  */
+.repeat-animation.ng-enter,
+.repeat-animation.ng-leave,
+.repeat-animation.ng-move {
+  -webkit-transition: all linear 1s;
+  -moz-transition: all linear 1s;
+  -o-transition: all linear 1s;
+  transition: all linear 1s;
+
+  position:relative;
+  /*left:5px;*/
+}
+.repeat-animation.ng-enter {
+  opacity: 0;
+}
+.repeat-animation.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.repeat-animation.ng-leave {
+  opacity: 1;
+}
+.repeat-animation.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+.repeat-animation.ng-move {
+  /*left:2px;*/
+  opacity: 0.5;
+}
+.repeat-animation.ng-move.ng-move-active {
+  /*left:0;*/
+  opacity: 1;
+}
+
+/*  ng-repeat Animation  */
+.picture-animation.ng-enter,
+.picture-animation.ng-leave,
+.picture-animation.ng-move {
+  -webkit-transition: all linear 1s;
+  -moz-transition: all linear 1s;
+  -o-transition: all linear 1s;
+  transition: all linear 1s;
+
+  position:relative;
+  left:5px;
+}
+.picture-animation.ng-enter {
+  opacity: 0;
+}
+.picture-animation.ng-enter.ng-enter-active {
+  opacity: 1;
+}
+.picture-animation.ng-leave {
+  opacity: 1;
+}
+.picture-animation.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+.picture-animation.ng-move {
+  left:2px;
+  opacity: 0.5;
+}
+.picture-animation.ng-move.ng-move-active {
+  left:0;
+  opacity: 1;
 }
 
 

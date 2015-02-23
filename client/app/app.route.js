@@ -11,6 +11,10 @@
         templateUrl: 'app/pictures/pictures.html',
         controller: 'Pictures',
         controllerAs: 'vm'
+      }).when('/development', {
+        templateUrl: 'app/development/development.html',
+        controller: 'Development',
+        controllerAs: 'vm'
       }).otherwise({redirectTo: '/pictures'});
 
     // use the HTML5 History API

@@ -18,6 +18,7 @@
     vm.currentPage = 0;
     vm.perPage = setPerPage();
     vm.totalPages = 0;
+    vm.lastIndex = 0;
 
     activate();
 
@@ -49,6 +50,8 @@
 
     function addPictures(pictures) {
       for (var i = 0; i < pictures.length; i++) {
+        vm.lastIndex += 1;
+        pictures[i].index = vm.lastIndex;
         vm.pictures.push(pictures[i]);
       }
     }
@@ -56,6 +59,16 @@
     function setPagingDetails(paging) {
       vm.currentPage = paging.currentPage;
       vm.totalPages = paging.totalPages;
+    }
+
+    function setOrder() {
+      for (var i = 0; i < vm.pictures.length; i++) {
+        if ($scope.reverse === 'false') {
+          $scope.myList[i].order = i;
+        } else {
+          $scope.myList[i].order = ($scope.myList.length - 1 - i);
+        }
+      }
     }
   }
 })();
