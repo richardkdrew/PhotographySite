@@ -27,7 +27,7 @@
       image.addEventListener('load', imageLoadComplete);
       image.addEventListener('error', imageLoadFailed);
 
-      //image.src = scope.picture.data.url;
+      image.src = scope.picture.data.url;
       image.alt = scope.picture.data.title;
 
       function imageLoadComplete() {
