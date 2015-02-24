@@ -6,13 +6,12 @@
      * Angular modules
      */
     'ngRoute',
-    'ngAnimate',
+    'ngAnimate'
     /*
      * Reusable cross-app components
      */
     /*
      * 3rd Party components
      */
-    //'infinite-scroll'
   ]);
 })();

@@ -403,7 +403,7 @@ module.exports = function (grunt) {
       },
       azure: {
         options: {
-          remote: 'https://rd-deployment@rd-photography.scm.azurewebsites.net:443/rd-photography.git',
+          remote: 'https://rd-deployment@rich-test.scm.azurewebsites.net:443/rich-test.git',
           branch: 'master'
         }
       }

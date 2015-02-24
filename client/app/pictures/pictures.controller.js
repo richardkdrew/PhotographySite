@@ -13,6 +13,7 @@
     vm.pictures = [];
     vm.changePage = changePage;
     vm.loadingMorePictures = false;
+    vm.title ="Testing";
 
     // Initialise paging details
     vm.currentPage = 0;
