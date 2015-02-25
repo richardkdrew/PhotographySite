@@ -22,8 +22,7 @@
       scope.isLoading = true;
       scope.newHeight = calculateHeight(element[0], scope.picture.data);
 
-      var image;
-      image = new Image();
+      var image = new Image();
 
       image.addEventListener('load', imageLoadComplete);
       image.addEventListener('error', imageLoadFailed);

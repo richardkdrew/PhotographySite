@@ -13,11 +13,10 @@
     vm.pictures = [];
     vm.changePage = changePage;
     vm.loadingMorePictures = false;
-    vm.title ="Testing";
 
     // Initialise paging details
     vm.currentPage = 0;
-    vm.perPage = setPerPage();
+    vm.perPage = 0;
     vm.totalPages = 0;
     vm.lastIndex = 0;
     vm.morePicturesToLoad = false;
@@ -25,6 +24,7 @@
     activate();
 
     function activate() {
+      setPerPage();
       return changePage(1).then(function () {
         console.info('Activated Pictures View');
       });

@@ -27,11 +27,6 @@
         per_page: perPage
       };
 
-      /*
-      console.info('page ' + page);
-      console.info('perpage ' + perPage);
-      */
-
       $http.get('api/pictures', { params: params } )
         .success(getPicturesComplete)
         .error(getPicturesFailed);

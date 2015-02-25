@@ -18,11 +18,11 @@
 
   appRun.$inject = ['$rootScope'];
 
-    function appRun($rootScope) {
-      $rootScope.$on('$routeChangeSuccess', function (event, current) {
-        $rootScope.title = current.$$route.title;
-      });
-    }
+  function appRun($rootScope) {
+    $rootScope.$on('$routeChangeSuccess', function (event, current) {
+      $rootScope.title = current.$$route.title;
+    });
+  }
 
 })();
 

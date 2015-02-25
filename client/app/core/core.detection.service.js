@@ -14,7 +14,7 @@
     return service;
 
     function isMobile() {
-     return navigator.userAgent.match(/Mobi/i);
+      return (/Mobi/.test(navigator.userAgent));
     }
   }
 })();

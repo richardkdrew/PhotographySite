@@ -21,9 +21,6 @@ exports.index = index;
     var page = req.query.page;
     var per_page = req.query.per_page;
 
-    console.info("page: " + page);
-    console.info("per_page: " + per_page);
-
     // Set up the flickr loader
     var flickr = new FlickrLoader(page, per_page);
 
@@ -39,8 +36,6 @@ exports.index = index;
           return res.send(500, 'Internal Server Error');
         }
         else {
-          //var pictures = payload.pictures;
-          //console.log(pictures);
           res.json(payload);
         }
       }

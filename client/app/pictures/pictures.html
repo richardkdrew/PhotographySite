@@ -5,9 +5,8 @@
   </a>-->
 
   <div class="grid">
-    <div ng-repeat='picture in vm.pictures' class="item">
+    <div ng-repeat='picture in vm.pictures | limitTo: vm.perPage' class="item">
       <image-loader picture="picture" />
-
     </div>
   </div>
 
