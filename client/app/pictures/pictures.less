@@ -1,7 +1,12 @@
 .grid {
   width: 100%;
+  float: left;
   margin-bottom: 0;
   .column-count(auto, 20em, 0);
+}
+
+.grid:after {
+  .clear();
 }
 
 .item {
@@ -10,46 +15,16 @@
   font-size: 0;
   max-width: 500px;
 
-  padding-left: 5px;
+  /*padding-left: 5px;*/
   padding-bottom: 5px;
 }
 
-.item img {
+.item img, .item.picture, .item.loading {
   position: relative;
   display: block;
-  width: 100%;
-}
-
-/*.item .description {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  display: block;
-
-  width: 100%;
-  padding: 5px 5px 10px 10px;
-
-  background-color: #000;
-
-  border-radius: .25em;
-  font-size: 15px;
-  color: #fff;
-  opacity: 0.6;
-  /*filter: alpha(opacity=60);
-
-}*/
-
-.item.picture, .item.loading {
   width: 100%;
 }
 
 .loading {
   background: @highlight-background-color url('/assets/images/spinner3.gif') no-repeat center center;
 }
-
-.picture-label {
-  position: relative;
-
-}
-
-

@@ -5,10 +5,12 @@
   </a>-->
 
   <div class="grid">
-    <div ng-repeat='picture in vm.pictures | limitTo: vm.perPage' class="item">
+    <div ng-repeat='picture in vm.pictures' class="item">
       <image-loader picture="picture" />
     </div>
   </div>
+
+  <div class="clear-fix">&nbsp;</div>
 
   <div ng-switch="vm.loadingMorePictures" ng-if="vm.morePicturesToLoad" class="load-more-container">
     <div ng-switch-when='true'><img ng-src="/assets/images/spinner.gif" alt="Loading more pictures..." /></div>

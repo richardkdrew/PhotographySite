@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.pictures')
+    .module('app.widgets')
 
     .directive('imageLoader', imageLoader);
 
@@ -11,7 +11,7 @@
     return {
       restrict: 'AE',
       replace: true,
-      templateUrl: 'app/pictures/image-loader.html',
+      templateUrl: 'app/widgets/image-loader.html',
       scope: {
         picture: '='
       },
@@ -19,20 +19,27 @@
     };
 
     function link(scope, element) {
+
+      var picture = scope.picture.data;
+
       scope.isLoading = true;
-      scope.newHeight = calculateHeight(element[0], scope.picture.data);
+      scope.newHeight = calculateHeight(element[0], picture);
 
       var image = new Image();
 
       image.addEventListener('load', imageLoadComplete);
       image.addEventListener('error', imageLoadFailed);
 
-      image.src = scope.picture.data.url;
-      image.alt = scope.picture.data.title;
+      image.src = picture.url;
+      image.alt = picture.title;
 
       function imageLoadComplete() {
-        console.info("Loaded picture " + scope.picture.index);
+        //console.info("Loaded picture " + picture.index);
         scope.$apply(function(){
+          element.css({ "max-width": picture.width });
+          element.css({ "width": element.clientWidth });
+          element.css({ "height": scope.newHeight });
+          element.removeAttr("height");
           scope.imageSrc = image.src;
           scope.isLoading = false;
         });

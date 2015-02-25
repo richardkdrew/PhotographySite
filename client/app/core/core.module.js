@@ -6,10 +6,11 @@
      * Angular modules
      */
     'ngRoute',
-    'ngAnimate'
+    'ngAnimate',
     /*
      * Reusable cross-app components
      */
+    'app.widgets'
     /*
      * 3rd Party components
      */
