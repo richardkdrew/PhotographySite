@@ -45,7 +45,6 @@ html, body, {
   overflow-x: hidden;
   overflow-y: scroll; /* has to be scroll, not auto */
   -webkit-overflow-scrolling: touch;
-
   background-color: @main-background-color;
   /*background-color: orange;*/
 }
@@ -58,7 +57,8 @@ body {
 section.container, section.page-container, section.content {
   height: 100%;
   width: 100%;
-  background-color: @main-background-color;
+  /*background-color: @main-background-color;*/
+  -webkit-overflow-scrolling: touch;
 }
 
 .loading-screen {
@@ -71,7 +71,7 @@ section.container, section.page-container, section.content {
 }
 
 .mobile-menu {
-  width: @mobile-menu-width;
+  width: @mobile-menu-width-wide;
   overflow: hidden;
   position: absolute;
   top: 0;
@@ -91,22 +91,59 @@ section.page-container {
 .mobile-menu.show + .page-container {
   display: block;
   position: absolute;
-  -webkit-transform: translateX(@mobile-menu-width);
-  transform: translateX(@mobile-menu-width);
+  -webkit-transform: translateX(@mobile-menu-width-wide);
+  transform: translateX(@mobile-menu-width-wide);
   -webkit-transition-duration: @mobile-menu-transition-duration;
   transition-duration: @mobile-menu-transition-duration;
   overflow-x: hidden;
 }
 
 .mobile-menu-trigger {
-  position: absolute;
+  position: fixed;
   right: 1em;
   top: 1em;
-  width: 5em;
-  height: 5em;
-  background: @main-background-color url('/assets/images/icon-menu.svg') no-repeat center center;
-  .border(1px, #444, 3px);
+  /*width: 4em;
+  height: 4em;*/
+  /*background: @main-background-color url('/assets/images/icon-menu.svg') no-repeat center center;
+  .border(1px, #444, 30px);*/
   z-index: 15;
+}
+
+.btn-round {
+  width: 4em;
+  height: 4em;
+  /* padding-bottom: 10%; */
+  border-radius: 50%;
+  border: 2px solid #444;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 0 3px #777;
+  box-sizing: content-box;
+}
+
+.mobile-menu-heading {
+  width: 100%;
+  text-align: center;
+  font-size: 125%;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: @main-font-color;
+  margin-top: 0;
+  padding: 1em 0;
+  text-transform: uppercase;
+}
+
+.mobile-menu-item {
+  width: 100%;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  line-height: 2em;
+  color: @main-font-color;
+}
+
+.mobile-menu-item:hover {
+  color: @mobile-menu-item-highlight-color;
 }
 
 /* ===== == = === 37.5em (600px) === = == ===== */
@@ -118,17 +155,36 @@ section.page-container {
     overflow-y: scroll;
   }
 
-  header {
-    display: block;
-  }
-
   .load-more a:hover {
-    color: powderblue;
+    color: @mobile-menu-item-highlight-color;
   }
 
   .item {
     padding-left: 5px;
   }
+
+  .mobile-menu {
+    width: @mobile-menu-width;
+  }
+
+  .mobile-menu.show + .page-container {
+    -webkit-transform: translateX(@mobile-menu-width);
+    transform: translateX(@mobile-menu-width);
+    overflow-x: hidden;
+  }
+}
+
+/* ===== == = === 48em (768px) === = == ===== */
+
+@media only screen and (min-width : 48em) {
+
+  header {
+    display: block;
+  }
+
+ /* .item {
+    padding-left: 5px;
+  }*/
 
   .mobile-menu {
     display: none;
@@ -137,14 +193,4 @@ section.page-container {
   .mobile-menu-trigger {
     display: none;
   }
-
-  /*.mobile-menu {
-    width: 20%;
-  }
-  .mobile-menu.show + .page-container {
-    -webkit-transform: translateX(20%);
-    transform: translateX(20%);
-    overflow-x: hidden;
-  }*/
-
 }

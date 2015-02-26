@@ -14,7 +14,7 @@
         controller: 'Development',
         controllerAs: 'vm',
         title: 'Development'
-      }).otherwise({redirectTo: '/development'});
+      }).otherwise({redirectTo: '/pictures'});
   }
 
   appRun.$inject = ['$rootScope'];
