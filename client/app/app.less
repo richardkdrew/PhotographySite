@@ -110,18 +110,19 @@ section.page-container {
   -webkit-transition-duration: @mobile-menu-transition-duration;
   transition-duration: @mobile-menu-transition-duration;
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: scroll; /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;
 }
 
 .mobile-menu-trigger {
   position: absolute;
-  left: 1em;
+  right: 1em;
   top: 1em;
   width: 5em;
   height: 5em;
   background: @main-background-color url('/assets/images/icon-menu.svg') no-repeat center center;
   .border(1px, #444, 3px);
-  z-index: 5;
+  z-index: 15;
 }
 
 /* ===== == = === 37.5em (600px) === = == ===== */
