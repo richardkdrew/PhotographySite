@@ -30,13 +30,19 @@
       &nbsp;
     </section>
 
+    <a class="mobile-menu-trigger btn-round" menu-trigger>&nbsp;</a>
+    <menu class="mobile-menu"></menu>
+    <section ng-cloak="" ng-view="" class="page-container">
+
+    <!--
     <section ng-if="true" class="container">
       <input type="button" class="mobile-menu-trigger btn-round" menu-trigger/>
       <menu class="mobile-menu"></menu>
-      <section class="page-container">
+      <section ng-if="true" ng-view="" class="page-container">
         <section ng-view="" class="content"></section>
       </section>
     </section>
+    -->
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -49,6 +55,7 @@
       <script src="bower_components/angular-route/angular-route.js"></script>
       <script src="bower_components/lodash/dist/lodash.compat.js"></script>
       <script src="bower_components/angular-animate/angular-animate.js"></script>
+      <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
       <!-- endbower -->
     <!-- endbuild -->
 
