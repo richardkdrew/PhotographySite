@@ -1,12 +1,13 @@
+.pictures-view {
+  /*background-color: yellow;*/
+}
+
 .grid {
   width: 100%;
   float: left;
   margin-bottom: 0;
+  background-color: @main-background-color;
   .column-count(auto, 20em, 0);
-}
-
-.grid:after {
-  .clear();
 }
 
 .item {
@@ -27,4 +28,19 @@
 
 .loading {
   background: @highlight-background-color url('/assets/images/spinner3.gif') no-repeat center center;
+}
+
+.load-more-container {
+  width: 100%;
+  background-color: @main-background-color;
+  text-align: center;
+}
+
+.load-more a {
+  display: block;
+  width: 98%;
+  padding: 1em 0;
+  margin: .25em 1%;
+  background-color: @highlight-background-color;
+  cursor: pointer;
 }

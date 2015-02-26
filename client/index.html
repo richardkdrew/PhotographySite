@@ -30,13 +30,12 @@
       &nbsp;
     </section>
 
-    <section class="container">
+    <section ng-if="true" class="container">
       <menu></menu>
       <section class="page-container">
         <input type="button" class="mobile-menu-trigger" menu-trigger/>
         <section ng-view="" class="content"></section>
       </section>
-
     </section>
 
     <!--[if lt IE 9]>
@@ -56,18 +55,16 @@
         <!-- build:js({.tmp,client}) app/app.module.js -->
         <script src="app/app.module.js"></script>
           <!-- injector:js -->
+          <script src="app/widgets/widgets.module.js"></script>
+          <script src="app/pictures/pictures.module.js"></script>
           <script src="app/core/core.module.js"></script>
           <script src="app/development/development.module.js"></script>
-          <script src="app/pictures/pictures.module.js"></script>
           <script src="app/app.route.js"></script>
           <script src="app/core/core.data.service.js"></script>
           <script src="app/core/core.detection.service.js"></script>
           <script src="app/development/development.controller.js"></script>
-          <script src="app/development/development.directive.js"></script>
-          <script src="app/development/menu-trigger.directive.js"></script>
           <script src="app/pictures/pictures.config.js"></script>
           <script src="app/pictures/pictures.controller.js"></script>
-          <script src="app/widgets/app.widgets.js"></script>
           <script src="app/widgets/image-loader.directive.js"></script>
           <script src="app/widgets/menu-trigger.directive.js"></script>
           <script src="app/widgets/menu.directive.js"></script>

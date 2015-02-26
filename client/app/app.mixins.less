@@ -19,7 +19,7 @@
 }
 
 .border(@size, @colour, @radius) {
-  border: @size solid @colour,
+  border: @size solid @colour;
   -moz-border-radius: @radius;
   border-radius: @radius;
 }
@@ -28,4 +28,9 @@
   content: "";
   display: table;
   clear: both;
+}
+
+.rgb(@r, @g, @b, @a) {
+  background: rgb(@r, @g, @b); /* Fall-back for browsers that don't support rgba */
+  background: rgba(@r, @g, @b, @a);
 }
