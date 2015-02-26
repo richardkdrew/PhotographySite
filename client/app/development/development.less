@@ -1,16 +1,17 @@
-.mobile-menu {
-  height: 100%;
-  width: 40%;
+/*.mobile-menu {
+  display: none;
+  width: 80%;
   overflow: hidden;
   position: absolute;
   top: 0;
   left: 0;
-  background-color: green;
-
+  height: 100%;
+  background-color: #000;
+  z-index: 5;
   a {
     display: block;
     width: 100%;
-    background-color: orange;
+
     text-align: center;
     padding: 1em 0;
   }
@@ -25,15 +26,11 @@
   transform: translateX(0);
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
-  background-color: red;
+  background-color: #222;
 }
 
-.mobile-menu .show {
-  left:0;
-  overflow-x: hidden;
-}
-
-.mobile-menu .show + .page-content {
+.mobile-menu.show + .page-content,
+{
   position: absolute;
   -webkit-transform: translateX(80%);
   transform: translateX(80%);
@@ -42,7 +39,31 @@
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 }
+*/
 
+/*
+nav .show {
+  display: block;
+  -webkit-transform: translateX(80%);
+  transform: translateX(80%);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  overflow-x: hidden;
+}
+*/
+
+
+/*.mobile-menu .show  {
+  position: absolute;
+  -webkit-transform: translateX(80%);
+  transform: translateX(80%);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}8/
+
+/*
 #sp-hide-menu {
   display: none;
 }
@@ -118,4 +139,4 @@
 }
 #sp-page > p {
   padding: 10px;
-}
+}*/

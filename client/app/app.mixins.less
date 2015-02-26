@@ -18,6 +18,12 @@
   transform: translateY(-50%);
 }
 
+.border(@size, @colour, @radius) {
+  border: @size solid @colour,
+  -moz-border-radius: @radius;
+  border-radius: @radius;
+}
+
 .clear() {
   content: "";
   display: table;

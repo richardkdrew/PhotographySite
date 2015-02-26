@@ -9,7 +9,7 @@
     <base href="/">
     <title ng-bind="title">Richard Drew Photography</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(client) app/vendor.css -->
       <!-- bower:css -->
@@ -30,7 +30,14 @@
       &nbsp;
     </section>
 
-    <section ng-view="" class="content"></section>
+    <section class="container">
+      <menu></menu>
+      <section class="page-container">
+        <input type="button" class="mobile-menu-trigger" menu-trigger/>
+        <section ng-view="" class="content"></section>
+      </section>
+
+    </section>
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -49,17 +56,21 @@
         <!-- build:js({.tmp,client}) app/app.module.js -->
         <script src="app/app.module.js"></script>
           <!-- injector:js -->
+          <script src="app/core/core.module.js"></script>
           <script src="app/development/development.module.js"></script>
           <script src="app/pictures/pictures.module.js"></script>
-          <script src="app/core/core.module.js"></script>
           <script src="app/app.route.js"></script>
           <script src="app/core/core.data.service.js"></script>
           <script src="app/core/core.detection.service.js"></script>
           <script src="app/development/development.controller.js"></script>
+          <script src="app/development/development.directive.js"></script>
+          <script src="app/development/menu-trigger.directive.js"></script>
           <script src="app/pictures/pictures.config.js"></script>
           <script src="app/pictures/pictures.controller.js"></script>
           <script src="app/widgets/app.widgets.js"></script>
           <script src="app/widgets/image-loader.directive.js"></script>
+          <script src="app/widgets/menu-trigger.directive.js"></script>
+          <script src="app/widgets/menu.directive.js"></script>
           <!-- endinjector -->
         <!-- endbuild -->
 </body>

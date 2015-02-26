@@ -30,7 +30,7 @@
       image.addEventListener('load', imageLoadComplete);
       image.addEventListener('error', imageLoadFailed);
 
-      image.src = picture.url;
+      //image.src = picture.url;
       image.alt = picture.title;
 
       function imageLoadComplete() {

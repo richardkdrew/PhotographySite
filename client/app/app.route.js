@@ -12,8 +12,9 @@
       .when('/development', {
         templateUrl: 'app/development/development.html',
         controller: 'Development',
-        controllerAs: 'vm'
-      }).otherwise({redirectTo: '/pictures'});
+        controllerAs: 'vm',
+        title: 'Development'
+      }).otherwise({redirectTo: '/development'});
   }
 
   appRun.$inject = ['$rootScope'];
