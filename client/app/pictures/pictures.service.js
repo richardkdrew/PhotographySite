@@ -15,25 +15,29 @@
 
     // Initialise paging details
     self.currentPage = 0;
-    self.perPage = 50;
+    self.perPage = setPerPage(detectionService);
     self.totalPages = 0;
 
     var service = {
-      getNextPage : getNextPage
+      getNextPage   : getNextPage,
+      hasMorePages  : hasMorePages
+
     };
     return service;
 
     function getNextPage() {
-      console.log("Inside Pictures Service");
+      //console.log("Inside Pictures Service");
       var deferred = $q.defer();
 
       dataService.getPictures(self.currentPage+1, self.perPage).then(getPicturesComplete, getPicturesFailed);
 
       function getPicturesComplete(data) {
-        console.log(data);
-        setPagingDetails(data.meta.paging);
+
+        //setPagingDetails(data.meta.paging);
         //addPictures(data.pictures);
         self.paging = data.meta.paging;
+        //console.log(self.paging.currentPage < self.paging.totalPages);
+        self.morePagesAvailable = self.paging.currentPage < self.paging.totalPages;
         deferred.resolve(data.pictures);
       }
 
@@ -44,6 +48,10 @@
 
       return deferred.promise;
     }
+
+    function hasMorePages() {
+      return self.paging.currentPage < self.paging.totalPages;
+    }
   }
 
   function setPerPage(detectionService) {
@@ -53,17 +61,17 @@
     else self.perPage = 50;
   }
 
-  function setPagingDetails(paging) {
-    self.currentPage = paging.currentPage;
-    self.totalPages = paging.totalPages;
-    self.morePagesAvailable = self.currentPage < self.totalPages;
+  /*function setPagingDetails(paging) {
+    //this.currentPage = paging.currentPage;
+    //this.totalPages = paging.totalPages;
+    this.morePagesAvailable = paging.currentPage < paging.totalPages;
   }
 
   function addPictures(pictures) {
     for (var i = 0; i < pictures.length; i++) {
-      self.lastIndex += 1;
+      this.lastIndex += 1;
       pictures[i].index = self.lastIndex;
       self.pictures.push(pictures[i]);
     }
-  }
+  }*/
 })();

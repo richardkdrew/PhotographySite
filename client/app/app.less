@@ -51,10 +51,15 @@ body {
   font-family: Arial, Helvetica, Geneva, sans-serif;
 }
 
-section.content {
+section.page-container {
+  position: absolute;
   height: 100%;
   width: 100%;
   background-color: @main-background-color;
+
+  overflow-y: scroll; /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;
+  z-index: 10;
 }
 
 .clear-fix {
