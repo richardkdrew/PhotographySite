@@ -9,8 +9,7 @@
     /*
      * Feature areas
      */
-    'app.pictures',
-    'app.development'
+    'app.pictures'
   ]);
 })();
 
