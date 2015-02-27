@@ -1,4 +1,4 @@
-<div class="loading-screen" ng-show="!vm.ready"></div>
+
 <div class="grid">
   <div ng-repeat='picture in vm.pictures' class="item">
     <image-loader picture="picture" />
@@ -11,3 +11,4 @@
   <div ng-switch-when='true'><img ng-src="/assets/images/spinner.gif" alt="Loading more pictures..." /></div>
   <div ng-switch-default class="load-more"><a ng-click='vm.loadMore()'>Load more pictures</a></div>
 </div>
+<div class="loading-screen" ng-show="!vm.ready"></div>

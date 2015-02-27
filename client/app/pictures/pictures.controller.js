@@ -20,7 +20,6 @@
     activate();
 
     function activate() {
-      //console.info('Inside Pictures Controller');
       return loadMore().then(function () {
         vm.ready = true;
         console.info('Activated Pictures View');
@@ -39,13 +38,10 @@
       if (vm.loadingMore) return;
       vm.loadingMore = true;
 
-      console.info('Calling Pictures Service');
       return picturesService.getNextPage().then(function (data) {
-        //console.log(data);
         addPictures(data);
         vm.hasMore = picturesService.hasMorePages();
         vm.loadingMore = false;
-        //console.log(vm.hasMore);
         return vm.pictures;
       })
     }

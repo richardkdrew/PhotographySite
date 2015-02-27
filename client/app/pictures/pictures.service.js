@@ -29,15 +29,14 @@
       //console.log("Inside Pictures Service");
       var deferred = $q.defer();
 
-      dataService.getPictures(self.currentPage+1, self.perPage).then(getPicturesComplete, getPicturesFailed);
+      var newPage = self.currentPage + 1;
+
+      dataService.getPictures(newPage, self.perPage).then(getPicturesComplete, getPicturesFailed);
 
       function getPicturesComplete(data) {
-
-        //setPagingDetails(data.meta.paging);
-        //addPictures(data.pictures);
         self.paging = data.meta.paging;
-        //console.log(self.paging.currentPage < self.paging.totalPages);
         self.morePagesAvailable = self.paging.currentPage < self.paging.totalPages;
+        self.currentPage = newPage;
         deferred.resolve(data.pictures);
       }
 
