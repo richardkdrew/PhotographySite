@@ -7,6 +7,7 @@
      */
     'ngRoute',
     'ngAnimate',
+    'ngSanitize',
     /*
      * Reusable cross-app components
      */

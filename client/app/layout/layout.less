@@ -1,0 +1,83 @@
+section.page-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: @main-background-color;
+
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  -webkit-transition-duration: @mobile-menu-transition-duration;
+  transition-duration: @mobile-menu-transition-duration;
+
+  overflow-y: scroll; /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;
+  z-index: 10;
+}
+
+.mobile-menu {
+  width: @mobile-menu-width-wide;
+  max-width: @mobile-menu-width-wide;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+.mobile-menu.show + .page-container {
+  display: block;
+  position: absolute;
+  -webkit-transform: translateX(@mobile-menu-width-wide);
+  transform: translateX(@mobile-menu-width-wide);
+  -webkit-transition-duration: @mobile-menu-transition-duration;
+  transition-duration: @mobile-menu-transition-duration;
+  overflow-x: hidden;
+}
+
+.mobile-menu-trigger {
+  position: fixed;
+  right: 1em;
+  top: 1em;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+  /*background: @main-background-color url('/assets/images/icon-menu.svg') no-repeat center center;*/
+  z-index: 15;
+}
+
+.btn-round {
+  width: 4em;
+  height: 4em;
+  .border(2px, #444, 50%);
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 0 3px #777;
+  box-sizing: content-box;
+}
+
+.mobile-menu-heading {
+  width: 100%;
+  text-align: center;
+  font-size: 125%;
+  font-weight: 300;
+  letter-spacing: 0.1em;
+  color: @main-font-color;
+  margin-top: 0;
+  padding: 1em 0;
+  text-transform: uppercase;
+}
+
+.mobile-menu-item {
+  width: 100%;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  line-height: 2em;
+  color: @main-font-color;
+}
+
+.mobile-menu-item:hover {
+  color: @mobile-menu-item-highlight-color;
+}

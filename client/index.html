@@ -26,23 +26,12 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <section ng-if="false" class="loading-screen">
-      &nbsp;
-    </section>
-
-    <a class="mobile-menu-trigger btn-round" menu-trigger>&nbsp;</a>
+    <!--<div ng-include="'app/layout/layout.html'"></div>-->
+    <a class="mobile-menu-trigger btn-round" menu-trigger></a>
     <menu class="mobile-menu"></menu>
-    <section ng-cloak="" ng-view="" class="page-container">
-
-    <!--
-    <section ng-if="true" class="container">
-      <input type="button" class="mobile-menu-trigger btn-round" menu-trigger/>
-      <menu class="mobile-menu"></menu>
-      <section ng-if="true" ng-view="" class="page-container">
-        <section ng-view="" class="content"></section>
-      </section>
-    </section>
-    -->
+    <section ng-view="" class="page-container"></section>
+    <div class="loading-screen" ng-show="false">
+    </div>
 
     <!--[if lt IE 9]>
     <script src="bower_components/es5-shim/es5-shim.js"></script>
@@ -66,10 +55,12 @@
           <script src="app/pictures/pictures.module.js"></script>
           <script src="app/core/core.module.js"></script>
           <script src="app/development/development.module.js"></script>
+          <script src="app/layout/layout.module.js"></script>
           <script src="app/app.route.js"></script>
           <script src="app/core/core.data.service.js"></script>
           <script src="app/core/core.detection.service.js"></script>
           <script src="app/development/development.controller.js"></script>
+          <script src="app/layout/layout.controller.js"></script>
           <script src="app/pictures/pictures.config.js"></script>
           <script src="app/pictures/pictures.controller.js"></script>
           <script src="app/widgets/image-loader.directive.js"></script>

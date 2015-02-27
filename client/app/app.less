@@ -13,6 +13,7 @@
 @import 'app.mixins.less';
 @import 'app.variables.less';
 @import 'development/development.less';
+@import 'layout/layout.less';
 @import 'pictures/pictures.less';
 // endinjector
 
@@ -52,101 +53,32 @@ body {
   font-family: Arial, Helvetica, Geneva, sans-serif;
 }
 
-section.container, section.page-container, section.content {
+section.content {
   height: 100%;
   width: 100%;
-  /*background-color: @main-background-color;*/
-
-}
-
-section.page-container {
   background-color: @main-background-color;
-  overflow-y: scroll; /* has to be scroll, not auto */
-  -webkit-overflow-scrolling: touch;
-}
-
-.loading-screen {
-  position: absolute;
-  z-index: 999;
-  background: @highlight-background-color url('/assets/images/spinner3.gif') no-repeat center center;
 }
 
 .clear-fix {
   .clear();
 }
 
-.mobile-menu {
-  width: @mobile-menu-width-wide;
-  overflow: hidden;
-  position: absolute;
+.loading-screen {
+  z-index: 99999 !important;
+  position: fixed !important;
   top: 0;
   left: 0;
+  width: 100%;
   height: 100%;
-}
+  opacity: .9;
+  pointer-events: auto;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
 
-section.page-container {
-  position: absolute;
-  z-index: 10;
-  -webkit-transform: translateX(0);
-  transform: translateX(0);
-  -webkit-transition-duration: @mobile-menu-transition-duration;
-  transition-duration: @mobile-menu-transition-duration;
-}
-
-.mobile-menu.show + .page-container {
-  display: block;
-  position: absolute;
-  -webkit-transform: translateX(@mobile-menu-width-wide);
-  transform: translateX(@mobile-menu-width-wide);
-  -webkit-transition-duration: @mobile-menu-transition-duration;
-  transition-duration: @mobile-menu-transition-duration;
-  overflow-x: hidden;
-}
-
-.mobile-menu-trigger {
-  position: fixed;
-  right: 1em;
-  top: 1em;
-  /*width: 4em;
-  height: 4em;*/
-  /*background: @main-background-color url('/assets/images/icon-menu.svg') no-repeat center center;
-  .border(1px, #444, 30px);*/
-  z-index: 15;
-}
-
-.btn-round {
-  width: 4em;
-  height: 4em;
-  .border(2px, #444, 50%);
-  overflow: hidden;
-  background: #000;
-  box-shadow: 0 0 3px #777;
-  box-sizing: content-box;
-}
-
-.mobile-menu-heading {
-  width: 100%;
-  text-align: center;
-  font-size: 125%;
-  font-weight: 300;
-  letter-spacing: 0.1em;
-  color: @main-font-color;
-  margin-top: 0;
-  padding: 1em 0;
-  text-transform: uppercase;
-}
-
-.mobile-menu-item {
-  width: 100%;
-  display: block;
-  text-align: center;
-  text-decoration: none;
-  line-height: 2em;
-  color: @main-font-color;
-}
-
-.mobile-menu-item:hover {
-  color: @mobile-menu-item-highlight-color;
+  background: @highlight-background-color url('/assets/images/spinner3.gif') no-repeat center center;
 }
 
 /* ===== == = === 37.5em (600px) === = == ===== */
