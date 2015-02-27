@@ -1,16 +1,13 @@
-<!--<div class="pictures-view">-->
-
-  <div class="grid">
-    <div ng-repeat='picture in vm.pictures' class="item">
-      <image-loader picture="picture" />
-    </div>
+<div class="loading-screen" ng-show="!vm.ready"></div>
+<div class="grid">
+  <div ng-repeat='picture in vm.pictures' class="item">
+    <image-loader picture="picture" />
   </div>
+</div>
 
-  <div class="clear-fix">&nbsp;</div>
+<div class="clear-fix"></div>
 
-  <div ng-switch="vm.loadingMorePictures" ng-if="vm.morePicturesToLoad" class="load-more-container">
-    <div ng-switch-when='true'><img ng-src="/assets/images/spinner.gif" alt="Loading more pictures..." /></div>
-    <div ng-switch-default class="load-more"><a ng-click='vm.changePage(vm.currentPage + 1)'>Load more pictures</a></div>
-  </div>
-
-<!--</div>-->
+<div ng-switch="vm.loadingMorePictures" ng-if="vm.morePicturesToLoad" class="load-more-container">
+  <div ng-switch-when='true'><img ng-src="/assets/images/spinner.gif" alt="Loading more pictures..." /></div>
+  <div ng-switch-default class="load-more"><a ng-click='vm.changePage(vm.currentPage + 1)'>Load more pictures</a></div>
+</div>

@@ -91,21 +91,11 @@ section.content {
   }
 
   .load-more a:hover {
-    color: @mobile-menu-item-highlight-color;
+    color: powderblue;
   }
 
   .item {
     padding-left: 5px;
-  }
-
-  .mobile-menu {
-    width: @mobile-menu-width;
-  }
-
-  .mobile-menu.show + .page-container {
-    -webkit-transform: translateX(@mobile-menu-width);
-    transform: translateX(@mobile-menu-width);
-    overflow-x: hidden;
   }
 }
 
@@ -113,19 +103,4 @@ section.content {
 
 @media only screen and (min-width : 48em) {
 
-  header {
-    display: block;
-  }
-
- /* .item {
-    padding-left: 5px;
-  }*/
-
-  .mobile-menu {
-    display: none;
-  }
-
-  .mobile-menu-trigger {
-    display: none;
-  }
 }

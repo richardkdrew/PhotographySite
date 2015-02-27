@@ -10,6 +10,8 @@
   function Pictures(detectionService, dataService) {
 
     var vm = this;
+    vm.ready = false;
+
     vm.pictures = [];
     vm.changePage = changePage;
     vm.loadingMorePictures = false;
@@ -26,6 +28,7 @@
     function activate() {
       setPerPage();
       return changePage(1).then(function () {
+        vm.ready = true;
         console.info('Activated Pictures View');
       });
     }
@@ -63,5 +66,7 @@
       vm.totalPages = paging.totalPages;
       vm.morePicturesToLoad = vm.currentPage < vm.totalPages;
     }
+
+
   }
 })();
