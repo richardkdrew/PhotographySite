@@ -10,9 +10,6 @@
 
     var self = this;
     self.pictures = [];
-    self.tags = [
-      'vantage'
-    ];
 
     // Initialise paging details
     self.paging = {
@@ -31,9 +28,8 @@
       var deferred = $q.defer();
 
       self.paging.currentPage++;
-      self.tags = tags;
 
-      dataService.getPictures(self.paging.currentPage, self.paging.perPage, self.tags).then(getPicturesComplete, getPicturesFailed);
+      dataService.getPictures(self.paging.currentPage, self.paging.perPage, tags).then(getPicturesComplete, getPicturesFailed);
 
       function getPicturesComplete(data) {
         self.paging = data.meta.paging;

@@ -7,14 +7,16 @@
 
   routeConfig.$inject = ['$routeProvider', '$locationProvider'];
 
-  function routeConfig($routeProvider) {
+  function routeConfig($routeProvider, $locationProvider) {
     $routeProvider
-      .when('/development', {
+      .when('/', {
         templateUrl: 'app/development/development.html',
         controller: 'Development',
         controllerAs: 'vm',
         title: 'Development'
       }).otherwise({redirectTo: '/pictures'});
+
+    $locationProvider.html5Mode(true);
   }
 
   appRun.$inject = ['$rootScope'];

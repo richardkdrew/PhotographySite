@@ -46,7 +46,6 @@
         addPictures(data);
         vm.hasMore = picturesService.hasMorePages();
         vm.loadingMore = false;
-        console.log(vm.pictures);
         return vm.pictures;
       })
     }
