@@ -16,6 +16,9 @@
     vm.lastIndex = 0;
     vm.loadMore = loadMore;
     vm.hasMore = false;
+    vm.tags = [
+        'vantage'
+      ];
 
     activate();
 
@@ -38,10 +41,12 @@
       if (vm.loadingMore) return;
       vm.loadingMore = true;
 
-      return picturesService.getNextPage().then(function (data) {
+      return picturesService.getNextPage(vm.tags).then(function (data) {
+        //vm.pictures.concat(data);
         addPictures(data);
         vm.hasMore = picturesService.hasMorePages();
         vm.loadingMore = false;
+        console.log(vm.pictures);
         return vm.pictures;
       })
     }

@@ -10,13 +10,15 @@
 
     var self = this;
     self.pictures = [];
-    self.morePagesAvailable = false;
-    self.lastIndex = 0;
+    self.tags = [
+      'vantage'
+    ];
 
     // Initialise paging details
-    self.currentPage = 0;
-    self.perPage = setPerPage(detectionService);
-    self.totalPages = 0;
+    self.paging = {
+      "perPage": setPerPage(detectionService),
+      "currentPage" : 0
+    };
 
     var service = {
       getNextPage   : getNextPage,
@@ -25,18 +27,16 @@
     };
     return service;
 
-    function getNextPage() {
-      //console.log("Inside Pictures Service");
+    function getNextPage(tags) {
       var deferred = $q.defer();
 
-      var newPage = self.currentPage + 1;
+      self.paging.currentPage++;
+      self.tags = tags;
 
-      dataService.getPictures(newPage, self.perPage).then(getPicturesComplete, getPicturesFailed);
+      dataService.getPictures(self.paging.currentPage, self.paging.perPage, self.tags).then(getPicturesComplete, getPicturesFailed);
 
       function getPicturesComplete(data) {
         self.paging = data.meta.paging;
-        self.morePagesAvailable = self.paging.currentPage < self.paging.totalPages;
-        self.currentPage = newPage;
         deferred.resolve(data.pictures);
       }
 
@@ -54,23 +54,10 @@
   }
 
   function setPerPage(detectionService) {
-    if (detectionService.isMobile) {
-      self.perPage = 10;
+    var perPage = 50;
+    if (detectionService.isMobile()) {
+      perPage = 10;
     }
-    else self.perPage = 50;
+    return perPage;
   }
-
-  /*function setPagingDetails(paging) {
-    //this.currentPage = paging.currentPage;
-    //this.totalPages = paging.totalPages;
-    this.morePagesAvailable = paging.currentPage < paging.totalPages;
-  }
-
-  function addPictures(pictures) {
-    for (var i = 0; i < pictures.length; i++) {
-      this.lastIndex += 1;
-      pictures[i].index = self.lastIndex;
-      self.pictures.push(pictures[i]);
-    }
-  }*/
 })();

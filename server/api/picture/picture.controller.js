@@ -19,10 +19,11 @@ exports.index = index;
 
     // Set up some default parameters
     var page = req.query.page;
-    var per_page = req.query.per_page;
+    var perPage = req.query.per_page;
+    var tags = req.query.tags;
 
     // Set up the flickr loader
-    var flickr = new FlickrLoader(page, per_page);
+    var flickr = new FlickrLoader(page, perPage, tags);
 
     request.get(flickr.options,  function (error, response, body) {
       if (!error && response.statusCode === 200) {
