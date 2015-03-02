@@ -8,19 +8,18 @@
 
   function routeConfig($routeProvider) {
     $routeProvider
+      .when('/pictures/:tag', {
+        templateUrl: 'app/pictures/pictures.html',
+        controller: 'Pictures',
+        controllerAs: 'vm',
+        title: "Richard Drew Photography : Pictures"
+      })
       .when('/pictures', {
         templateUrl: 'app/pictures/pictures.html',
         controller: 'Pictures',
         controllerAs: 'vm',
-        title: "Richard Drew Photography : Pictures"//,
-        /*resolve: {
-         picturesPrepService: picturesPrepService
-         }*/
-      });
-
-    /*function picturesPrepService(picturesService) {
-     return picturesService.getPictures();
-     }*/
+        title: "Richard Drew Photography : Pictures"
+      }).otherwise('/pictures');
   }
 })();
 
