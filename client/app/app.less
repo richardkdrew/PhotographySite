@@ -46,6 +46,9 @@ html, body, {
   overflow-x: hidden;
   background-color: @main-background-color;
   /*background-color: orange;*/
+
+  overflow-y: scroll; /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;
 }
 
 body {
@@ -59,8 +62,8 @@ section.page-container {
   width: 100%;
   /*background-color: @main-background-color;*/
 
-  overflow-y: scroll; /* has to be scroll, not auto */
-  -webkit-overflow-scrolling: touch;
+  /*overflow-y: scroll; /* has to be scroll, not auto */
+  /*-webkit-overflow-scrolling: touch;*/
   /* z-index: 10; */
 }
 
@@ -107,7 +110,7 @@ section.page-container {
 /* ===== == = === 48em (768px) === = == ===== */
 
 @media only screen and (min-width : 48em) {
-  header {
+  nav.menu {
     display: block;
   }
 }
