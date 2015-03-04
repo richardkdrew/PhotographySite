@@ -1,7 +1,7 @@
 <nav class="menu" ng-controller="Menu as menu">
   <ul>
     <li ng-repeat='item in menu.items' >
-      <a ng-href='{{item.link}}'>{{item.name}}</a>
+      <a ng-class="menu.menuClass('{{item.link}}')" ng-href='{{item.link}}'>{{item.name}}</a>
     </li>
   </ul>
 </nav>
