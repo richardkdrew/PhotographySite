@@ -10,7 +10,8 @@
      * Feature areas
      */
     'app.pictures',
-    'app.pages'
+    'app.pages',
+    'app.menu'
   ]);
 })();
 

@@ -10,7 +10,8 @@
   function dataService($http, $q) {
 
     var service = {
-      getPictures     : getPictures
+      getPictures     : getPictures,
+      getTags         : getTags
     };
 
     return service;
@@ -41,6 +42,25 @@
 
       function getPicturesFailed(data, code) {
         console.error('XHR Failed for getPictures.' + data, code);
+        deferred.reject(data);
+      }
+
+      return deferred.promise;
+    }
+
+    function getTags() {
+      var deferred = $q.defer();
+
+      $http.get('api/tags')
+        .success(getTagsComplete)
+        .error(getTagsFailed);
+
+      function getTagsComplete(data) {
+        deferred.resolve(data);
+      }
+
+      function getTagsFailed(data, code) {
+        logger.error('XHR Failed for getTags.' + data, code);
         deferred.reject(data);
       }
 

@@ -12,6 +12,7 @@
 // injector
 @import 'app.mixins.less';
 @import 'app.variables.less';
+@import 'components/menu/menu.less';
 @import 'pages/about/about.less';
 @import 'pictures/pictures.less';
 // endinjector
@@ -68,7 +69,7 @@ section.page-container {
 }
 
 .loading-screen {
-  z-index: 99999 !important;
+  z-index: 99998 !important;
   position: fixed !important;
   top: 0;
   left: 0;
@@ -106,5 +107,7 @@ section.page-container {
 /* ===== == = === 48em (768px) === = == ===== */
 
 @media only screen and (min-width : 48em) {
-
+  header {
+    display: block;
+  }
 }

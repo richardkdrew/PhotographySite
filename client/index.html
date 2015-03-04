@@ -27,6 +27,7 @@
     <![endif]-->
 
     <section ng-view="" class="page-container"></section>
+    <section ng-include="'app/components/menu/menu.html'"></section>
     <div class="loading-screen" ng-show="false">
     </div>
 
@@ -49,16 +50,19 @@
         <script src="app/app.module.js"></script>
           <!-- injector:js -->
           <script src="app/widgets/widgets.module.js"></script>
+          <script src="app/components/menu/menu.module.js"></script>
           <script src="app/pictures/pictures.module.js"></script>
           <script src="app/core/core.module.js"></script>
           <script src="app/pages/pages.module.js"></script>
           <script src="app/app.route.js"></script>
+          <script src="app/components/menu/menu.controller.js"></script>
+          <script src="app/components/menu/menu.service.js"></script>
           <script src="app/core/core.data.service.js"></script>
           <script src="app/core/core.detection.service.js"></script>
           <script src="app/pages/about/about.controller.js"></script>
-          <script src="app/pages/pages.config.js"></script>
-          <script src="app/pictures/pictures.config.js"></script>
+          <script src="app/pages/pages.route.js"></script>
           <script src="app/pictures/pictures.controller.js"></script>
+          <script src="app/pictures/pictures.route.js"></script>
           <script src="app/pictures/pictures.service.js"></script>
           <script src="app/widgets/image-loader.directive.js"></script>
           <!-- endinjector -->

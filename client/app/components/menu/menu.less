@@ -1,0 +1,56 @@
+nav {
+  display: none;
+  z-index: 99998 !important;
+  position: fixed !important;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 2em;
+  height: 3em;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  border: solid 1px #777;
+  border-left: 0;
+  border-right: 0;
+}
+
+nav {
+  ul {
+    float: right;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    margin-right: 2em;
+
+    li {
+      display: inline-block;
+
+      .vertical-center;
+
+      text-align: center;
+      width: 6em;
+
+      a {
+        display: block;
+        line-height: 3em;
+        color: #777;
+        cursor: pointer;
+        cursor: hand;
+      }
+      :hover {
+        background-color: #777;
+        color: powderblue;
+      }
+      :active {
+        background-color: #777;
+        color: yellow;
+      }
+    }
+    :last-child:after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+  }
+
+}
