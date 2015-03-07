@@ -27,6 +27,7 @@
     function getNextPage(tags) {
       var deferred = $q.defer();
 
+      if (tags == 'all') tags = null;
       self.paging.currentPage++;
 
       dataService.getPictures(self.paging.currentPage, self.paging.perPage, tags).then(getPicturesComplete, getPicturesFailed);

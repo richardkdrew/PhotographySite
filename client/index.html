@@ -27,8 +27,10 @@
     <![endif]-->
 
     <section ng-view="" class="page-container"></section>
-    <section ng-include="'app/components/menu/menu.html'"></section>
-    <div class="loading-screen" ng-show="false">
+    <!--<section ng-include="'app/components/menu/menu.html'"></section>-->
+    <menu></menu>
+    <a href="#" class="toggle-menu" menu-trigger>Menu</a>
+    <div class="loading-screen main" ng-show="false">
     </div>
 
     <!--[if lt IE 9]>
@@ -50,12 +52,13 @@
         <script src="app/app.module.js"></script>
           <!-- injector:js -->
           <script src="app/widgets/widgets.module.js"></script>
-          <script src="app/components/menu/menu.module.js"></script>
           <script src="app/pictures/pictures.module.js"></script>
+          <script src="app/components/menu/menu.module.js"></script>
           <script src="app/core/core.module.js"></script>
           <script src="app/pages/pages.module.js"></script>
           <script src="app/app.route.js"></script>
           <script src="app/components/menu/menu.controller.js"></script>
+          <script src="app/components/menu/menu.directive.js"></script>
           <script src="app/components/menu/menu.service.js"></script>
           <script src="app/core/core.data.service.js"></script>
           <script src="app/core/core.detection.service.js"></script>
@@ -65,6 +68,7 @@
           <script src="app/pictures/pictures.route.js"></script>
           <script src="app/pictures/pictures.service.js"></script>
           <script src="app/widgets/image-loader.directive.js"></script>
+          <script src="app/widgets/menu-trigger.directive.js"></script>
           <!-- endinjector -->
         <!-- endbuild -->
 </body>

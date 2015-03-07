@@ -1,0 +1,40 @@
+.animating nav.menu, .menu-visible nav.menu {
+  display: block;
+}
+
+/***
+ * If the animating class is present then apply
+ * the CSS transition to #page over 250ms.
+ */
+.animating section.page-container  {
+  transition: transform .25s ease-in-out;
+  -webkit-transition: -webkit-transform .25s ease-in-out;
+}
+
+/***
+ * If the left class is present then transform
+ * the #page element 240px to the left.
+ */
+.animating.left section.page-container {
+  transform: translate3d(-@nav-mobile-menu-width, 0, 0 );
+  -webkit-transform: translate3d(-@nav-mobile-menu-width, 0, 0 );
+}
+
+/***
+ * If the right class is present then transform
+ * the #page element 240px to the right.
+ */
+.animating.right section.page-container {
+  transform: translate3d(@nav-mobile-menu-width, 0, 0 );
+  -webkit-transform: translate3d(@nav-mobile-menu-width, 0, 0 );
+}
+
+
+.animating section.page-container, nav.menu {
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+}
+
+.menu-visible section.page-container  {
+  right: @nav-mobile-menu-width;
+}

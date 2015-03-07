@@ -14,12 +14,12 @@
         controllerAs: 'vm',
         title: "Richard Drew Photography : Pictures"
       })
-      .when('/pictures', {
+      .when('/pictures/all', {
         templateUrl: 'app/pictures/pictures.html',
         controller: 'Pictures',
         controllerAs: 'vm',
         title: "Richard Drew Photography : Pictures"
-      }).otherwise('/pictures');
+      }).otherwise('/pictures/all');
   }
 })();
 

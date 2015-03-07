@@ -36,6 +36,10 @@
     }
 
     function addMenuItems(tags) {
+      // Add the all tags menu item
+      var allItem = {"name": "All", "link": "/pictures/all"};
+      self.menuItems.push(allItem);
+
       for (var i = 0; i < tags.length; i++) {
         var item = {"name": tags[i].name, "link": "/pictures/" + tags[i].name};
         self.menuItems.push(item);

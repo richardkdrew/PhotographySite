@@ -4,10 +4,10 @@
   </div>
 </div>
 
-<div class="clear-fix"></div>
+
 
 <div ng-switch="vm.loadingMore" ng-if="vm.hasMore" class="load-more-container">
   <div ng-switch-when='true'><img ng-src="/assets/images/spinner.gif" alt="Loading more pictures..." /></div>
   <div ng-switch-default class="load-more"><a ng-click='vm.loadMore()'>Load more pictures</a></div>
 </div>
-<div class="loading-screen" ng-show="!vm.ready"></div>
+<div class="loading-screen feature" ng-show="!vm.ready"></div>

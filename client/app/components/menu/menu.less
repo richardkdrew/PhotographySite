@@ -1,54 +1,54 @@
-nav.menu{
-  display: none;
-  z-index: 99998 !important;
-  position: fixed !important;
-  bottom: 3em;
-  left: 0;
-  /*margin-bottom: 2em;*/
-  height: 3em;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  border: solid 1px #777;
-  border-left: 0;
-  border-right: 0;
+
+
+.toggle-menu {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  z-index: 99997 !important;
 }
 
-nav.menu {
+
+
+nav.menu{
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+
+  height: 100%;
+  width: 15em;
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+  background: #000;
+  z-index: 99996 !important;
   ul {
-    float: right;
     list-style-type: none;
     margin: 0;
     padding: 0;
     height: 100%;
-    margin-right: 2em;
 
     li {
-      display: inline-block;
 
       .vertical-center;
 
       text-align: center;
-      width: 6em;
+      width: 100%;
 
       a {
         display: block;
         line-height: 3em;
-        color: #777;
-        cursor: pointer;
+        color: @nav-font-color;
         cursor: hand;
         text-decoration: none;
+        border-bottom: 1px solid rgba( 255, 255, 255, 0.05 );
       }
-      :hover {
-        /*background-color: #777;*/
-        color: powderblue;
-      }
-      .active {
-        background-color: powderblue;
+      :active, .active {
+        background-color: @nav-bg-highlight-color;
         cursor: default;
         font-weight: bold;
-        color: #fff;
-        :hover {
-        }
+        color: @nav-font-color;
       }
     }
     :last-child:after {
@@ -57,5 +57,73 @@ nav.menu {
       clear: both;
     }
   }
+}
 
+/* ===== == = === 48em (768px) === = == ===== */
+
+@media only screen and (min-width : 48em) {
+
+  .toggle-menu {
+    display: none;
+  }
+
+  nav.menu{
+    display: block;
+    z-index: 99998 !important;
+    position: fixed !important;
+    bottom: 3em;
+    left: 0;
+    /*margin-bottom: 2em;*/
+    height: 3em;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    border: solid 1px #777;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  nav.menu {
+    ul {
+      float: right;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      margin-right: 2em;
+
+      li {
+        display: inline-block;
+
+        .vertical-center;
+
+        text-align: center;
+        width: 6em;
+
+        a {
+          display: block;
+          line-height: 3em;
+          color: #777;
+          cursor: hand;
+          text-decoration: none;
+        }
+        :hover {
+          /*background-color: #777;*/
+          color: powderblue;
+        }
+        .active {
+          background-color: @nav-bg-highlight-color;
+          cursor: default;
+          font-weight: bold;
+          color: #fff;
+          :hover {
+          }
+        }
+      }
+      :last-child:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+    }
+  }
 }
