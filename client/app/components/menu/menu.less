@@ -3,11 +3,10 @@
 .toggle-menu {
   position: absolute;
   top: 1em;
-  right: 1em;
+  right: @nav-mobile-menu-trigger-offset;
   z-index: 99997 !important;
+  background-color: green;
 }
-
-
 
 nav.menu{
   display: none;
@@ -21,8 +20,15 @@ nav.menu{
   margin: 0;
 
   list-style: none;
-  background: #000;
+  background: @nav-bg-colour;
   z-index: 99996 !important;
+
+  h3 {
+    padding: 1em;
+    font-size: 2em;
+    text-align: center;
+  }
+
   ul {
     list-style-type: none;
     margin: 0;
@@ -30,8 +36,6 @@ nav.menu{
     height: 100%;
 
     li {
-
-      .vertical-center;
 
       text-align: center;
       width: 100%;
