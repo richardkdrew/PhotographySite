@@ -13,6 +13,7 @@
     vm.ready = false;
     vm.items = [];
     vm.menuClass = menuClass;
+    vm.navigate = navigate;
 
     activate();
 
@@ -32,9 +33,11 @@
 
     function menuClass(page) {
       var current = $location.path();
-      /*console.log("Page: " + page);
-      console.log("Current: " + current);*/
       return page === current ? "active" : "";
+    }
+
+    function navigate(location) {
+      $location.path(location);
     }
   }
 })();
