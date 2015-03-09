@@ -3,7 +3,7 @@
 @media only screen and (max-width : 48em) {
 
   .toggle-menu {
-    position: absolute;
+    position: fixed;
     top: 1em;
     right: @nav-mobile-menu-trigger-offset;
     z-index: 99997 !important;
@@ -11,7 +11,7 @@
 
   nav.menu {
     display: none;
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
 
@@ -21,6 +21,9 @@
     list-style: none;
     background: @nav-bg-colour;
     z-index: 99996 !important;
+
+    overflow-x: hidden;
+    overflow-y: hidden;
 
     h3 {
       padding: .5em;
