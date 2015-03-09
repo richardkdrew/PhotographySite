@@ -40,10 +40,8 @@
 
       // Grab the tag from the url
       var tag = $routeParams.tag;
-      console.log(tag);
 
       return picturesService.getNextPage(tag).then(function (data) {
-        //vm.pictures.concat(data);
         addPictures(data);
         vm.hasMore = picturesService.hasMorePages();
         vm.loadingMore = false;
