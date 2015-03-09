@@ -42,6 +42,9 @@ article, aside, details, figcaption, figure, footer, header, menu, nav, section 
 
 html {
   height: 100%;
+
+  overflow-y: scroll; /* has to be scroll, not auto */
+  -webkit-overflow-scrolling: touch;
 }
 
 html, body {
@@ -67,8 +70,7 @@ section.page-container {
   width: 100%;
   background-color: orange; /*@main-bg-color;*/
 
-  overflow-y: scroll; /* has to be scroll, not auto */
-  -webkit-overflow-scrolling: touch;
+
 
   z-index: 99997 !important;
 }
