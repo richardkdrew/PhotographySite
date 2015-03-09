@@ -35,38 +35,23 @@
 
           if(body.hasClass('menu-visible'))
           {
-            console.log('Toggle Menu - Close!');
+            //console.log('Toggle Menu - Close!');
             body.addClass('right');
-            //body.removeClass('left');
-            //scope.menuState = 'closed';
           }
           else {
-            console.log('Toggle Menu - Open!');
+            //console.log('Toggle Menu - Open!');
             body.addClass('left');
-            //body.removeClass('right');
-            //scope.menuState = 'open';
           }
 
           body.on(transitionEnd, endTransition);
 
           function endTransition() {
-            console.log('End Transition!!!');
+            //console.log('End Transition!!!');
             body.removeClass('animating left right');
             body.toggleClass('menu-visible');
             body.off(transitionEnd, endTransition);
           }
-          //body.toggleClass('menu-visible');
-
-          //console.log(element);
-
-          //$document[0].body[0].toggleClass('left', scope.menuState == 'closed' );
-          //$document[0].body[0].toggleClass('right', scope.menuState != 'closed' );
-          //element.toggleClass('show');
-
-          //body.toggleClass('left', scope.menuState == 'closed');
-          //body.toggleClass('right', scope.menuState != 'closed');
-
-        });
+         });
       }
     }
   }
