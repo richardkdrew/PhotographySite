@@ -40,39 +40,41 @@ article, aside, details, figcaption, figure, footer, header, menu, nav, section 
   display: block;
 }
 
-html {
+/*html {
   height: 100%;
-
-  overflow-y: scroll; /* has to be scroll, not auto */
-  -webkit-overflow-scrolling: touch;
-}
+}*/
 
 html, body {
   width: 100%;
   max-width: 100%;
 
-  /*overflow-y: -moz-scrollbars-vertical;
-  overflow-y: scroll;*/
+  /*height: 100%;*/
+  /*overflow-y: -moz-scrollbars-vertical;*/
+/*  overflow-y: scroll; /* has to be scroll, not auto */
+  /*-webkit-overflow-scrolling: touch;*/
 
-  background-color: @main-bg-color;
+  /*background-color: @main-bg-color;*/
   /*background-color: orange;*/
 }
 
 body {
-  /*height: 100%;*/
+
   color: @main-font-color;
   font-family: Arial, Helvetica, Geneva, sans-serif;
 }
 
 section.page-container {
   position: relative;
-  height: 100%;
+  /*height: 100%;*/
   width: 100%;
   background-color: orange; /*@main-bg-color;*/
 
+  /*overflow-y: scroll; /* has to be scroll, not auto */
+  /*-webkit-overflow-scrolling: touch;*/
 
+  /*z-index: 99997 !important;*/
 
-  z-index: 99997 !important;
+  overflow-y: hidden;
 }
 
 .clear-fix {
