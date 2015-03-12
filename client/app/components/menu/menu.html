@@ -2,6 +2,7 @@
   <h3>RD Photo</h3>
   <ul>
     <li ng-repeat='item in menu.items' menu-trigger>
+      <span class="arrow"></span>
       <a ng-class="menu.menuClass('{{item.link}}')" ng-click="menu.navigate(item.link)" >{{item.name}}</a>
     </li>
   </ul>

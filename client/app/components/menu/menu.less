@@ -1,10 +1,10 @@
 /* ===== == = === 48em (768px) === = == ===== */
 
-@media only screen and (max-width : 48em) {
+/*@media only screen and (max-width : 48em) {*/
 
   .toggle-menu {
     position: fixed;
-    top: 1em;
+    top: @nav-mobile-menu-trigger-offset;
     right: @nav-mobile-menu-trigger-offset;
     z-index: 99997 !important;
   }
@@ -26,8 +26,8 @@
     overflow-y: hidden;
 
     h3 {
-      padding: .5em;
       font-size: 1.5em;
+      padding: .75em;
       text-align: center;
     }
 
@@ -38,19 +38,28 @@
       height: 100%;
 
       li {
-
-        text-align: center;
         width: 100%;
+        span {
+          position: absolute;
 
+          width: 0;
+          height: 0;
+          border-top: 1em solid transparent;
+          border-bottom: 1em solid transparent;
+          border-left: 1em solid @nav-bg-colour;
+          margin-top: .5em;
+        }
         a {
+          text-align: center;
           display: block;
           line-height: 3em;
           color: @nav-font-color;
           cursor: hand;
           text-decoration: none;
           border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
         }
-        :active, .active {
+        .active {
           background-color: @nav-bg-highlight-color;
           cursor: default;
           font-weight: bold;
@@ -63,11 +72,11 @@
     }
   }
 
-}
+/*}*/
 
 /* ===== == = === 48em (768px) === = == ===== */
 
-@media only screen and (min-width : 48em) {
+/*@media only screen and (min-width : 48em) {
 
   .toggle-menu, .button {
     display: none;
@@ -135,4 +144,4 @@
       }
     }
   }
-}
+}*/
