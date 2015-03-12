@@ -14,7 +14,6 @@
 
       function menuTriggerClick() {
         scope.$emit('ToggleMenu_Event');
-        //console.log('triggered ToggleMenu_Event')
       }
 
       function cleanUp() {

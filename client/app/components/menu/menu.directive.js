@@ -13,7 +13,7 @@
       link: link
     };
 
-    function link(scope, element) {
+    function link(scope) {
 
       // Listen for the ToggleMenu event
       scope.$on('ToggleMenu_Event', toggleMenu);
