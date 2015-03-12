@@ -26,14 +26,6 @@
       });
     }
 
-    function addPictures(pictures) {
-      for (var i = 0; i < pictures.length; i++) {
-        vm.lastIndex += 1;
-        pictures[i].index = vm.lastIndex;
-        vm.pictures.push(pictures[i]);
-      }
-    }
-
     function loadMore() {
       if (vm.loadingMore) return;
       vm.loadingMore = true;
@@ -42,12 +34,11 @@
       var tag = $routeParams.tag;
 
       return picturesService.getNextPage(tag).then(function (data) {
-        addPictures(data);
+        vm.pictures = vm.pictures.concat(data);
         vm.hasMore = picturesService.hasMorePages();
         vm.loadingMore = false;
         return vm.pictures;
       })
     }
-
   }
 })();
