@@ -34,10 +34,12 @@
       image.alt = picture.title;
 
       function imageLoadComplete() {
-        //console.info("Loaded picture " + picture.index);
+
+        //logImageDiagnostics(picture, element[0].clientWidth, scope.newHeight);
+
         scope.$apply(function(){
           element.css({ "max-width": picture.width });
-          element.css({ "width": element.clientWidth });
+          element.css({ "width": element[0].clientWidth });
           element.css({ "height": scope.newHeight });
           element.removeAttr("height");
           scope.imageSrc = image.src;
@@ -58,6 +60,16 @@
     var containerWidth = Number(container.clientWidth);
     var ratio = Number(item.height) / Number(item.width);
     return Math.ceil(containerWidth * ratio);
+  }
+
+  function logImageDiagnostics(picture, newWidth, newHeight) {
+    console.log("Id " + picture.id );
+    console.log("Title " + picture.title );
+    console.log("Original Height " + picture.height );
+    console.log("Original Width " + picture.width );
+    console.log("New Height " + newHeight);
+    console.log("New Width " + newWidth);
+    console.log("-----------------------------");
   }
 
 }());

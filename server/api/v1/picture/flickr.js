@@ -19,7 +19,7 @@ var FlickrLoader = function (page, perPage, tags) {
       tags: pictureTags,
       tag_mode: 'all',
       format: 'json',
-      extras: 'url_sq, url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l, url_o',
+      extras: 'url_m',//'url_sq, url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l, url_o',
       nojsoncallback: 1,
       per_page: perPage,
       page: page

@@ -32,7 +32,7 @@
         tags: tag
       };
 
-      $http.get('api/pictures', { params: params } )
+      $http.get('api/v1/pictures', { params: params } )
         .success(getPicturesComplete)
         .error(getPicturesFailed);
 
@@ -51,7 +51,7 @@
     function getTags() {
       var deferred = $q.defer();
 
-      $http.get('api/tags')
+      $http.get('api/v1/tags')
         .success(getTagsComplete)
         .error(getTagsFailed);
 
