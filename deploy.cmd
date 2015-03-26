@@ -93,12 +93,35 @@ echo %DEPLOYMENT_SOURCE%
 call :SelectNodeVersion
 
 :: 2. Install npm packages
-echo Installing npm dependencies.
+echo Installing npm build dependencies.
 IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   pushd "%DEPLOYMENT_SOURCE%"
-  echo Start npm dependency install %TIME%
-  call !NPM_CMD! install --development
-  echo Finish npm dependency install %TIME%
+  echo Start npm build dependency install %TIME%
+
+  call :ExecuteCmd !NPM_CMD! install grunt
+  call :ExecuteCmd !NPM_CMD! install grunt-angular-templates
+  call :ExecuteCmd !NPM_CMD! install grunt-asset-injector
+  call :ExecuteCmd !NPM_CMD! install grunt-autoprefixer
+  call :ExecuteCmd !NPM_CMD! install grunt-concurrent
+  call :ExecuteCmd !NPM_CMD! install grunt-contrib-clean
+  call :ExecuteCmd !NPM_CMD! install grunt-contrib-concat
+  call :ExecuteCmd !NPM_CMD! install grunt-contrib-copy
+  call :ExecuteCmd !NPM_CMD! install grunt-contrib-cssmin
+  call :ExecuteCmd !NPM_CMD! install grunt-contrib-htmlmin
+  call :ExecuteCmd !NPM_CMD! install grunt-contrib-imagemin
+  call :ExecuteCmd !NPM_CMD! install grunt-contrib-less
+  call :ExecuteCmd !NPM_CMD! install grunt-contrib-uglify
+  call :ExecuteCmd !NPM_CMD! install grunt-google-cdn
+  call :ExecuteCmd !NPM_CMD! install grunt-ng-annotate,
+  call :ExecuteCmd !NPM_CMD! install grunt-rev
+  call :ExecuteCmd !NPM_CMD! install grunt-svgmin
+  call :ExecuteCmd !NPM_CMD! install grunt-usemin
+  call :ExecuteCmd !NPM_CMD! install grunt-wiredep
+  call :ExecuteCmd !NPM_CMD! install jit-grunt
+  call :ExecuteCmd !NPM_CMD! install jshint-stylish
+  call :ExecuteCmd !NPM_CMD! install time-grunt
+
+  echo Finish npm build dependency install %TIME%
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
@@ -139,12 +162,12 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
 )
 
 :: 6. Install npm packages
-echo Installing npm dependencies.
+echo Installing prod npm dependencies.
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
   echo Start npm dependency install %TIME%
-  call !NPM_CMD! install --production
-  echo Finish npm dependency install %TIME%
+  call :ExecuteCmd !NPM_CMD! install --production
+  echo Finish npm prod dependency install %TIME%
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
