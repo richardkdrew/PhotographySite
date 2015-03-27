@@ -98,28 +98,28 @@ IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   pushd "%DEPLOYMENT_SOURCE%"
   echo Start npm build dependency install %TIME%
 
-  call :ExecuteCmd !NPM_CMD! install grunt
-  call :ExecuteCmd !NPM_CMD! install grunt-angular-templates
-  call :ExecuteCmd !NPM_CMD! install grunt-asset-injector
-  call :ExecuteCmd !NPM_CMD! install grunt-autoprefixer
-  call :ExecuteCmd !NPM_CMD! install grunt-concurrent
-  call :ExecuteCmd !NPM_CMD! install grunt-contrib-clean
-  call :ExecuteCmd !NPM_CMD! install grunt-contrib-concat
-  call :ExecuteCmd !NPM_CMD! install grunt-contrib-copy
-  call :ExecuteCmd !NPM_CMD! install grunt-contrib-cssmin
-  call :ExecuteCmd !NPM_CMD! install grunt-contrib-htmlmin
-  call :ExecuteCmd !NPM_CMD! install grunt-contrib-imagemin
-  call :ExecuteCmd !NPM_CMD! install grunt-contrib-less
-  call :ExecuteCmd !NPM_CMD! install grunt-contrib-uglify
-  call :ExecuteCmd !NPM_CMD! install grunt-google-cdn
-  call :ExecuteCmd !NPM_CMD! install grunt-ng-annotate,
-  call :ExecuteCmd !NPM_CMD! install grunt-rev
-  call :ExecuteCmd !NPM_CMD! install grunt-svgmin
-  call :ExecuteCmd !NPM_CMD! install grunt-usemin
-  call :ExecuteCmd !NPM_CMD! install grunt-wiredep
-  call :ExecuteCmd !NPM_CMD! install jit-grunt
-  call :ExecuteCmd !NPM_CMD! install jshint-stylish
-  call :ExecuteCmd !NPM_CMD! install time-grunt
+  call !NPM_CMD! install grunt
+  call !NPM_CMD! install grunt-angular-templates
+  call !NPM_CMD! install grunt-asset-injector
+  call !NPM_CMD! install grunt-autoprefixer
+  call !NPM_CMD! install grunt-concurrent
+  call !NPM_CMD! install grunt-contrib-clean
+  call !NPM_CMD! install grunt-contrib-concat
+  call !NPM_CMD! install grunt-contrib-copy
+  call !NPM_CMD! install grunt-contrib-cssmin
+  call !NPM_CMD! install grunt-contrib-htmlmin
+  call !NPM_CMD! install grunt-contrib-imagemin
+  call !NPM_CMD! install grunt-contrib-less
+  call !NPM_CMD! install grunt-contrib-uglify
+  call !NPM_CMD! install grunt-google-cdn
+  call !NPM_CMD! install grunt-ng-annotate,
+  call !NPM_CMD! install grunt-rev
+  call !NPM_CMD! install grunt-svgmin
+  call !NPM_CMD! install grunt-usemin
+  call !NPM_CMD! install grunt-wiredep
+  call !NPM_CMD! install jit-grunt
+  call !NPM_CMD! install jshint-stylish
+  call !NPM_CMD! install time-grunt
 
   echo Finish npm build dependency install %TIME%
   IF !ERRORLEVEL! NEQ 0 goto error
