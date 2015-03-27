@@ -101,7 +101,17 @@ IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   call !NPM_CMD! install grunt
   call !NPM_CMD! install grunt-angular-templates
   call !NPM_CMD! install grunt-asset-injector
-  
+
+
+  call !NPM_CMD! install grunt-contrib-clean
+  call !NPM_CMD! install grunt-contrib-concat
+  call !NPM_CMD! install grunt-contrib-copy
+  call !NPM_CMD! install grunt-contrib-cssmin
+  call !NPM_CMD! install grunt-contrib-htmlmin
+  call !NPM_CMD! install grunt-contrib-imagemin
+  call !NPM_CMD! install grunt-contrib-less
+  call !NPM_CMD! install grunt-contrib-uglify
+
 
   echo Finish npm build dependency install %TIME%
   IF !ERRORLEVEL! NEQ 0 goto error
