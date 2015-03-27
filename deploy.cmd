@@ -98,7 +98,13 @@ IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   pushd "%DEPLOYMENT_SOURCE%"
   echo Start npm build dependency install %TIME%
 
-  call !NPM_CMD! install grunt grunt-angular-templates grunt-asset-injector grunt-autoprefixer grunt-concurrent grunt-contrib-clean grunt-contrib-concat
+  call !NPM_CMD! install grunt
+  call !NPM_CMD! install grunt-angular-templates
+  call !NPM_CMD! install grunt-asset-injector
+  ::call !NPM_CMD! install grunt-autoprefixer
+  ::call !NPM_CMD! install grunt-concurrent
+  ::call !NPM_CMD! install grunt-contrib-clean
+  ::call !NPM_CMD! install grunt-contrib-concat
   ::call !NPM_CMD! install grunt-contrib-copy
   ::call !NPM_CMD! install grunt-contrib-cssmin
   ::call !NPM_CMD! install grunt-contrib-htmlmin
