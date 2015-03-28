@@ -97,30 +97,7 @@ echo Installing npm build dependencies.
 IF EXIST "%DEPLOYMENT_SOURCE%\package.json" (
   pushd "%DEPLOYMENT_SOURCE%"
   echo Start npm build dependency install %TIME%
-
-  call !NPM_CMD! install grunt
-  call !NPM_CMD! install grunt-angular-templates
-  call !NPM_CMD! install grunt-asset-injector
-
-  call !NPM_CMD! install grunt-concurrent
-  call !NPM_CMD! install grunt-contrib-clean
-  call !NPM_CMD! install grunt-contrib-concat
-  call !NPM_CMD! install grunt-contrib-copy
-  call !NPM_CMD! install grunt-contrib-cssmin
-  call !NPM_CMD! install grunt-contrib-htmlmin
-  call !NPM_CMD! install grunt-contrib-imagemin
-  call !NPM_CMD! install grunt-contrib-less
-  call !NPM_CMD! install grunt-contrib-uglify
-  call !NPM_CMD! install grunt-google-cdn
-  call !NPM_CMD! install grunt-ng-annotate,
-  call !NPM_CMD! install grunt-rev
-  call !NPM_CMD! install grunt-svgmin
-  call !NPM_CMD! install grunt-usemin
-  call !NPM_CMD! install grunt-wiredep
-  call !NPM_CMD! install jit-grunt
-  call !NPM_CMD! install jshint-stylish
-  call !NPM_CMD! install time-grunt
-
+  call :ExecuteCmd !NPM_CMD! install --development
   echo Finish npm build dependency install %TIME%
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
