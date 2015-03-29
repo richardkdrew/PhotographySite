@@ -21,7 +21,7 @@
 
       // Set to default is no paging params are supplied
       nextPage = nextPage || 1;
-      perPage = perPage || 10;
+      perPage = perPage || 16;
 
       // if there are extra tags, add them to the api request
       //if(tags !== null) tags = tags.join('+');

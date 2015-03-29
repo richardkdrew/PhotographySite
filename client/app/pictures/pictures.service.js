@@ -51,9 +51,9 @@
   }
 
   function setPerPage(detectionService) {
-    var perPage = 50;
+    var perPage = 52;
     if (detectionService.isMobile()) {
-      perPage = 10;
+      perPage = 16;
     }
     return perPage;
   }
