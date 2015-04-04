@@ -4,6 +4,7 @@
       "url": "https://api.flickr.com/services/rest/",
       "timeout": 10000,
       "qs": {
+        "api_key": "36862b3eb779f31ad749a8b561b730b6",
         "method": "flickr.photos.search",
         "tag_mode": "all",
         "format": "json",

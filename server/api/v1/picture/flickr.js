@@ -10,7 +10,7 @@ var FlickrLoader = function (page, perPage, tags) {
   this.options = config.get('Flickr.apiConfig');
 
   // Set the parameter based options
-  this.options.qs.api_key     =       process.env.FLICKR_API_KEY;
+  //this.options.qs.api_key     =       process.env.FLICKR_API_KEY;
   this.options.qs.tags        =       tags;
   this.options.qs.per_page    =       perPage;
   this.options.qs.page        =       page;
