@@ -11,18 +11,28 @@
 
 var request = require('request');
 var FlickrLoader = require('./flickr.js');
+//var config = require('config');
 
 // Get list of things
 exports.index = index;
 
   function index(req, res) {
 
-    // Set up some default parameters
+    /*var defaults = config.get('Flickr.defaults');
+
+    var tags = defaults.mandatoryTags;
+    var defaultPerPage = defaults.perPage;
+    var defaultPage = defaults.page;
+
+    // Add any additional tags
+    if(req.query.tags != null) tags = tags + '+' + req.query.tags;*/
+
+    // Assign the Flickr Api query params
     var page = req.query.page;
     var perPage = req.query.per_page;
     var tags = req.query.tags;
 
-    // Set up the flickr loader
+    // Set up the Flickr loader
     var flickr = new FlickrLoader(page, perPage, tags);
 
     request.get(flickr.options,  function (error, response, body) {

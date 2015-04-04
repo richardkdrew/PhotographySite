@@ -2,29 +2,18 @@
 
 var request = require('request');
 var Picture = require('./picture.js');
+var config = require('config');
 
 var FlickrLoader = function (page, perPage, tags) {
-  // Set mandatory tags
-  var pictureTags = 'aston+martin';
 
-  // Add any additional tags
-  if(tags != null) pictureTags = pictureTags + '+' + tags;
 
-  this.options = {
-    uri: 'https://api.flickr.com/services/rest/',
-    timeout: 10000,
-    qs: {
-      method: 'flickr.photos.search',
-      api_key: '36862b3eb779f31ad749a8b561b730b6',
-      tags: pictureTags,
-      tag_mode: 'all',
-      format: 'json',
-      extras: 'url_m',//'url_sq, url_t, url_s, url_q, url_m, url_n, url_z, url_c, url_l, url_o',
-      nojsoncallback: 1,
-      per_page: perPage,
-      page: page
-    }
-  };
+  this.options = config.get('Flickr.apiConfig');
+
+  // Set the parameter based options
+  this.options.qs.api_key     =       process.env.FLICKR_API_KEY;
+  this.options.qs.tags        =       tags;
+  this.options.qs.per_page    =       perPage;
+  this.options.qs.page        =       page;
 };
 
 FlickrLoader.prototype.mapToResponse = mapToResponse;

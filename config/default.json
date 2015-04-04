@@ -1,0 +1,15 @@
+{
+  "Flickr": {
+    "apiConfig": {
+      "url": "https://api.flickr.com/services/rest/",
+      "timeout": 10000,
+      "qs": {
+        "method": "flickr.photos.search",
+        "tag_mode": "all",
+        "format": "json",
+        "extras": "url_m",
+        "nojsoncallback": 1
+      }
+    }
+  }
+}

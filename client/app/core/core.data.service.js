@@ -16,20 +16,24 @@
 
     return service;
 
-    function getPictures(nextPage, perPage, tag) {
+    function getPictures(nextPage, perPage, tags) {
       var deferred = $q.defer();
 
-      // Set to default is no paging params are supplied
-      nextPage = nextPage || 1;
-      perPage = perPage || 16;
+      var defaultTag = 'aston+martin';
+      var defaultPerPage = 16;
+      var defaultPage = 1;
 
-      // if there are extra tags, add them to the api request
-      //if(tags !== null) tags = tags.join('+');
+      // Add any additional tags
+      if(tags != null) tags = defaultTag + '+' + tags;
+
+      // Set to default is no paging params are supplied
+      nextPage = nextPage || defaultPage;
+      perPage = perPage || defaultPerPage;
 
       var params = {
         page: nextPage,
         per_page: perPage,
-        tags: tag
+        tags: tags
       };
 
       $http.get('api/v1/pictures', { params: params } )
