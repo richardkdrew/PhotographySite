@@ -19,12 +19,12 @@
     function getPictures(nextPage, perPage, tags) {
       var deferred = $q.defer();
 
-      var defaultTag = 'aston+martin';
+      var defaultTags = 'aston+martin';
       var defaultPerPage = 16;
       var defaultPage = 1;
 
       // Add any additional tags
-      if(tags != null) tags = defaultTag + '+' + tags;
+      if(tags != null) defaultTags = defaultTags + '+' + tags;
 
       // Set to default is no paging params are supplied
       nextPage = nextPage || defaultPage;
@@ -33,7 +33,7 @@
       var params = {
         page: nextPage,
         per_page: perPage,
-        tags: tags
+        tags: defaultTags
       };
 
       $http.get('api/v1/pictures', { params: params } )
@@ -64,7 +64,7 @@
       }
 
       function getTagsFailed(data, code) {
-        logger.error('XHR Failed for getTags.' + data, code);
+        console.error('XHR Failed for getTags.' + data, code);
         deferred.reject(data);
       }
 

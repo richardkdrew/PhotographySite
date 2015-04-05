@@ -14,6 +14,8 @@ var FlickrLoader = function (page, perPage, tags) {
   this.options.qs.tags        =       tags;
   this.options.qs.per_page    =       perPage;
   this.options.qs.page        =       page;
+
+  console.log(this.options);
 };
 
 FlickrLoader.prototype.mapToResponse = mapToResponse;
