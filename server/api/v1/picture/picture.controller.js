@@ -12,20 +12,26 @@
 var request = require('request');
 var FlickrLoader = require('./flickr.js');
 
+var defaultTags = 'aston+martin';
+var defaultLimit = 16;
+var defaultOffset = 0;
+
 // Get list of pictures
 exports.index = index;
 
   function index(req, res) {
 
-    // Assign the Flickr Api query params
-    var page = req.query.page;
-    var perPage = req.query.per_page;
-    var tags = req.query.tags;
+    console.log(req.originalUrl);
 
-    console.log(req.query);
+    // Assign the Flickr Api query params
+    var offset = req.query.offset || defaultOffset;
+    var limit = req.query.limit || defaultLimit;
+    var tags = req.query.tags || defaultTags;
 
     // Set up the Flickr loader
-    var flickr = new FlickrLoader(page, perPage, tags);
+    var flickr = new FlickrLoader(offset, limit, tags);
+
+    //console.log(flickr.options);
 
     request.get(flickr.options,  function (error, response, body) {
       if (!error && response.statusCode === 200) {

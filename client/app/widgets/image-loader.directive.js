@@ -20,7 +20,7 @@
 
     function link(scope, element) {
 
-      var picture = scope.picture.data;
+      var picture = scope.picture;
 
       scope.isLoading = true;
       scope.newHeight = calculateHeight(element[0], picture);

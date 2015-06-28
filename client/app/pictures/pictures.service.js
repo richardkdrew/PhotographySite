@@ -13,8 +13,8 @@
 
     // Initialise paging details
     self.paging = {
-      "perPage": setPerPage(detectionService),
-      "currentPage" : 0
+      "limit": setPerPage(detectionService),
+      "offset" : 0
     };
 
     var service = {
@@ -24,16 +24,18 @@
     };
     return service;
 
-    function getNextPage(tags) {
+    function getNextPage() {
       var deferred = $q.defer();
 
-      if (tags == 'all') tags = null;
-      self.paging.currentPage++;
+      var next = self.paging.next || "";
 
-      dataService.getPictures(self.paging.currentPage, self.paging.perPage, tags).then(getPicturesComplete, getPicturesFailed);
+      dataService.getPictures(next).then(getPicturesComplete, getPicturesFailed);
 
       function getPicturesComplete(data) {
         self.paging = data.meta.paging;
+
+        console.log(self.paging);
+
         deferred.resolve(data.pictures);
       }
 
@@ -46,7 +48,7 @@
     }
 
     function hasMorePages() {
-      return self.paging.currentPage < self.paging.totalPages;
+      return self.paging.offset < self.paging.total;
     }
   }
 

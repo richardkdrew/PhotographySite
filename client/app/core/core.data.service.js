@@ -16,27 +16,12 @@
 
     return service;
 
-    function getPictures(nextPage, perPage, tags) {
+    function getPictures(nextPage) {
       var deferred = $q.defer();
 
-      var defaultTags = 'aston+martin';
-      var defaultPerPage = 16;
-      var defaultPage = 1;
+      var url = 'api/v1/pictures' + nextPage;
 
-      // Add any additional tags
-      if(tags != null) defaultTags = defaultTags + '+' + tags;
-
-      // Set to default is no paging params are supplied
-      nextPage = nextPage || defaultPage;
-      perPage = perPage || defaultPerPage;
-
-      var params = {
-        page: nextPage,
-        per_page: perPage,
-        tags: defaultTags
-      };
-
-      $http.get('api/v1/pictures', { params: params } )
+      $http.get(url)
         .success(getPicturesComplete)
         .error(getPicturesFailed);
 
