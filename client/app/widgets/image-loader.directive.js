@@ -3,9 +3,7 @@
 
   angular
     .module('app.widgets')
-
     .directive('imageLoader', imageLoader);
-
 
   function imageLoader() {
     return {

@@ -10,12 +10,11 @@
   function Pictures($routeParams, picturesService) {
 
     var vm = this;
-    vm.ready = false;
-    vm.loadingMore = false;
     vm.pictures = [];
-    vm.lastIndex = 0;
     vm.loadMore = loadMore;
     vm.hasMore = false;
+    vm.loadingMore = false;
+    vm.ready = false;
 
     activate();
 
@@ -33,9 +32,9 @@
       // Grab the tag from the url
       var tag = $routeParams.tag;
 
-      return picturesService.getNextPage(tag).then(function (data) {
+      return picturesService.getPictures(tag).then(function (data) {
         vm.pictures = vm.pictures.concat(data);
-        vm.hasMore = picturesService.hasMorePages();
+        vm.hasMore = picturesService.hasMore();
         vm.loadingMore = false;
         return vm.pictures;
       })

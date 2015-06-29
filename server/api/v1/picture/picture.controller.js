@@ -1,12 +1,3 @@
-/**
- * Using Rails-like standard naming convention for endpoints.
- * GET     /pictures              ->  index
- * POST    /pictures              ->  create
- * GET     /pictures/:id          ->  show
- * PUT     /pictures/:id          ->  update
- * DELETE  /pictures/:id          ->  destroy
- */
-
 'use strict';
 
 var request = require('request');
@@ -19,34 +10,46 @@ var defaultOffset = 0;
 // Get list of pictures
 exports.index = index;
 
-  function index(req, res) {
+function index(req, res) {
 
-    console.log(req.originalUrl);
+  // set up the url to use for paging links
+  var linkUrl = getLinkUrl(req.originalUrl);
 
-    // Assign the Flickr Api query params
-    var offset = req.query.offset || defaultOffset;
-    var limit = req.query.limit || defaultLimit;
-    var tags = req.query.tags || defaultTags;
+  // Assign the Flickr Api query params
+  var offset = req.query.offset || defaultOffset;
+  var limit = req.query.limit || defaultLimit;
+  var tags = req.query.tags || defaultTags;
 
-    // Set up the Flickr loader
-    var flickr = new FlickrLoader(offset, limit, tags);
+  // Set up the Flickr loader
+  var flickr = new FlickrLoader(offset, limit, tags);
 
-    //console.log(flickr.options);
+  request.get(flickr.options,  function (error, response, body) {
+    if (!error && response.statusCode === 200) {
 
-    request.get(flickr.options,  function (error, response, body) {
-      if (!error && response.statusCode === 200) {
+      var payload = flickr.mapToResponse(body, linkUrl);
 
-        var payload = flickr.mapToResponse(body);
+      if (payload.meta.result.status === "fail")
+      {
+        console.log("Failure: code (" + payload.meta.result.code + "), " + payload.meta.result.message);
 
-        if (payload.meta.result.status === "fail")
-        {
-          console.log("Failure: code (" + payload.meta.result.code + "), " + payload.meta.result.message);
-
-          return res.send(500, 'Internal Server Error');
-        }
-        else {
-          res.json(payload);
-        }
+        return res.send(500, 'Internal Server Error');
       }
-    });
+      else {
+        res.json(payload);
+      }
+    }
+  });
+}
+
+function getLinkUrl(originalUrl) {
+  // find the query string params
+  var queryStringStartPosition = originalUrl.indexOf('?');
+
+  // set up the url to use for paging links
+  var linkUrl = originalUrl;
+  if(queryStringStartPosition) {
+    linkUrl = originalUrl.substring(0, queryStringStartPosition);
   }
+
+  return linkUrl;
+}

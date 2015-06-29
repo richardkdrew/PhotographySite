@@ -16,10 +16,8 @@
 
     return service;
 
-    function getPictures(nextPage) {
+    function getPictures(url) {
       var deferred = $q.defer();
-
-      var url = 'api/v1/pictures' + nextPage;
 
       $http.get(url)
         .success(getPicturesComplete)

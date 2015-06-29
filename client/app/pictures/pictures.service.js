@@ -1,5 +1,6 @@
 (function () {
   'use strict';
+
   angular
     .module('app.pictures')
     .factory('picturesService', picturesService);
@@ -9,45 +10,47 @@
   function picturesService($q, dataService, detectionService) {
 
     var self = this;
-    self.pictures = [];
 
-    // Initialise paging details
-    self.paging = {
-      "limit": setPerPage(detectionService),
-      "offset" : 0
-    };
+    // Initialise some local params for paging and pictures
+    self.pictures = [];
+    self.paging = {};
 
     var service = {
-      getNextPage   : getNextPage,
-      hasMorePages  : hasMorePages
-
+      getPictures   : getPictures,
+      hasMore       : hasMore
     };
     return service;
 
-    function getNextPage() {
+    function getPictures() {
       var deferred = $q.defer();
 
-      var next = self.paging.next || "";
+      // default url based on device
+      var url = 'api/v1/pictures?limit=' + setPerPage(detectionService) + '&offset=0';
 
-      dataService.getPictures(next).then(getPicturesComplete, getPicturesFailed);
+      // if there are links alter the url accordingly
+      var links = self.paging.links;
+      if(links) {
+        url = links.next;
+      }
+
+      //console.log("url used was", url);
+
+      dataService.getPictures(url).then(getPicturesComplete, getPicturesFailed);
 
       function getPicturesComplete(data) {
         self.paging = data.meta.paging;
-
-        console.log(self.paging);
-
         deferred.resolve(data.pictures);
       }
 
       function getPicturesFailed(data, code) {
-        console.error(code, data);
+        console.error("Failed to retrieve Pictures", code, data);
         deferred.reject(data);
       }
 
       return deferred.promise;
     }
 
-    function hasMorePages() {
+    function hasMore() {
       return self.paging.offset < self.paging.total;
     }
   }
