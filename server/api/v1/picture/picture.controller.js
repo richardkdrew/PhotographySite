@@ -20,6 +20,8 @@ function index(req, res) {
   var limit = req.query.limit || defaultLimit;
   var tags = req.query.tags;
 
+  console.log(tags);
+
   // Set up the Flickr loader
   var flickr = new flickrLoader(offset, limit, defaultTags, tags);
 

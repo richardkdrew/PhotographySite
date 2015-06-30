@@ -12,6 +12,7 @@ function flickrLoader(offset, limit, defaultTags, selectedTags) {
   if(selectedTags) {
     tags = tags + '+' + selectedTags;
   }
+
   this.options = config.get('Flickr.apiConfig');
   this.options.qs.page      = page;
   this.options.qs.per_page  = limit;
@@ -52,7 +53,7 @@ function mapPictures(pictures) {
   return mappedPictures;
 }
 
-function mapPagingMetadata(payload, tags, url) {
+function mapPagingMetadata(payload) {
   var mappedPaging = {};
 
   mappedPaging.limit = payload.photos.perpage;

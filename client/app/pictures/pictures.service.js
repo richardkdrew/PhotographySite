@@ -14,31 +14,24 @@
     // Initialise some local params for paging and pictures
     self.pictures = [];
     self.paging = {};
+    self.tag = "";
 
     var service = {
-      getPictures   : getPictures,
-      hasMore       : hasMore
+      getPictures : getPictures,
+      hasMore     : hasMore
     };
     return service;
 
-    function getPictures() {
+    function getPictures(tag) {
       var deferred = $q.defer();
 
-      // default url based on device
-      var url = 'api/v1/pictures?limit=' + setPerPage(detectionService) + '&offset=0';
-
-      // if there are links alter the url accordingly
-      var links = self.paging.links;
-      if(links) {
-        url = links.next;
-      }
-
-      //console.log("url used was", url);
+      var url = generateUrl(tag);
 
       dataService.getPictures(url).then(getPicturesComplete, getPicturesFailed);
 
       function getPicturesComplete(data) {
         self.paging = data.meta.paging;
+        console.log(self.paging);
         deferred.resolve(data.pictures);
       }
 
@@ -53,13 +46,35 @@
     function hasMore() {
       return self.paging.offset < self.paging.total;
     }
-  }
 
-  function setPerPage(detectionService) {
-    var perPage = 52;
-    if (detectionService.isMobile()) {
-      perPage = 16;
+    function setPerPage() {
+      var perPage = 52;
+      if (detectionService.isMobile()) {
+        perPage = 16;
+      }
+      return perPage;
     }
-    return perPage;
+
+    function generateUrl(tag) {
+
+      // default url based on page size (device)
+      var url = 'api/v1/pictures?limit=' + setPerPage() + '&offset=0';
+
+      if(tag) {
+        url = url + '&tags=' + tag;
+      }
+
+      // if we're talking about the same category/tag then get the next link (if there is one)
+      if(self.tag === tag) {
+        // if there are links alter the url accordingly
+        var links = self.paging.links;
+        if (links) {
+          url = links.next;
+        }
+      }
+      self.tag = tag;
+
+      return url;
+    }
   }
 })();
