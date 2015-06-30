@@ -2,56 +2,45 @@
 
 var config = require('config');
 
-var FlickrLoader = flickrLoader;
-
-function flickrLoader(offset, limit, tags) {
+function flickrLoader(offset, limit, defaultTags, selectedTags) {
 
   // Convert the offset and limit to Flickr paging params
   var page = 1;
   if(offset > 0) page = Math.round((offset / limit) + 1);
 
+  var tags = defaultTags;
+  if(selectedTags) {
+    tags = tags + '+' + selectedTags;
+  }
   this.options = config.get('Flickr.apiConfig');
   this.options.qs.page      = page;
   this.options.qs.per_page  = limit;
   this.options.qs.tags      = tags;
 }
 
-FlickrLoader.prototype.mapToResponse = mapToResponse;
+flickrLoader.prototype.mapToResponse = mapToResponse;
 
-function mapToResponse(data, url) {
+function mapToResponse(data, url, tags) {
   var payload = JSON.parse(data);
 
-  // Sort by id
-  payload.photos.photo.sort(function(a,b) {return a.id - b.id});
+  var picturesResponse = {};
+  picturesResponse.meta = {};
 
-  // Convert the Flickr paging to offset and limit
-  var limit = payload.photos.perpage;
-  var page = payload.photos.page;
-  var offset =  (page * limit) - limit;
-  var total = payload.photos.total;
+  picturesResponse.meta.paging = mapPagingMetadata(payload);
+  picturesResponse.meta.result = mapResultMetadata(payload);
 
-  var tags = this.options.qs.tags;
+  if(payload.photos.photo) {
+    picturesResponse.pictures = mapPictures(payload.photos.photo);
+    picturesResponse.meta.paging.links = generateLinks(picturesResponse.meta.paging, tags, url);
+  }
 
-  return {
-    "pictures": mapPictures(payload.photos.photo),
-    "meta": {
-      "paging": {
-        "limit": limit,
-        "offset": offset,
-        "total": total,
-        "links": generateLinks(limit, offset, total, tags, url)
-        //"totalPictures": payload.photos.total
-      },
-      "result": {
-        "status": payload.stat,
-        "code": payload.code,
-        "message": payload.message
-      }
-    }
-  };
+  return picturesResponse;
 }
 
 function mapPictures(pictures) {
+  // Sort by id
+  pictures .sort(function(a,b) {return a.id - b.id});
+
   var mappedPictures = [];
 
   pictures.forEach(function(element) {
@@ -63,7 +52,31 @@ function mapPictures(pictures) {
   return mappedPictures;
 }
 
-function generateLinks(limit, offset, total, tags, url) {
+function mapPagingMetadata(payload, tags, url) {
+  var mappedPaging = {};
+
+  mappedPaging.limit = payload.photos.perpage;
+  mappedPaging.offset = (payload.photos.page * mappedPaging.limit) - mappedPaging.limit;
+  mappedPaging.total = payload.photos.total || 0;
+
+  return mappedPaging;
+}
+
+function mapResultMetadata(payload) {
+  var mappedResult = {};
+
+  mappedResult.status = payload.stat;
+  mappedResult.code = payload.code;
+  mappedResult.message = payload.message;
+
+  return mappedResult;
+}
+
+function generateLinks(pagingMetadata, tags, url) {
+
+  var limit = pagingMetadata.limit;
+  var offset = pagingMetadata.offset;
+  var total = pagingMetadata.total;
 
   var links = {};
 
@@ -87,16 +100,19 @@ function generateLinks(limit, offset, total, tags, url) {
     links.last = url + generateLink(limit, (total - limit), tags);
 
     // generate current link
-    links.current = generateLink(limit, offset, tags);
+    links.current = url + generateLink(limit, offset, tags);
   }
-
-  console.log(links);
 
   return links;
 }
 
 function generateLink(limit, offset, tags) {
-  return "?limit=" + limit + "&offset=" + offset + "&tags=" + tags;
+  var link = "?limit=" + limit + "&offset=" + offset;
+
+  if(tags) {
+    link = link + "&tags=" + tags;
+  }
+  return link;
 }
 
 module.exports = flickrLoader;
