@@ -17,4 +17,18 @@ describe('GET /api/pictures', function() {
         done();
       });
   });
+
+  it('should accept an offset parameter', function(done) {
+    request(app)
+      .get('/api/pictures')
+      .query({ offset: 100})
+      .set('Accept', 'application/json')
+      .expect(200)
+      .expect('Content-Type', /json/)
+      .end(function(err, res) {
+        should.not.exist(err);
+        res.body.should.be.instanceof(Array);
+        done();
+      });
+  });
 });
