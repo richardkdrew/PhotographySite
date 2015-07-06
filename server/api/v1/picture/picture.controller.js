@@ -1,39 +1,31 @@
 'use strict';
 
-var request = require('request');
-var flickrLoader = require('./flickr.js');
-
-var defaultTags = 'aston+martin';
-var defaultLimit = 16;
-var defaultOffset = 0;
+var pictureService = require("./picture.service.js")();
+var pictureData = require("./picture.data.service.js")();
+var defaultSettings = require("config").get('Flickr.defaults');
 
 // Get list of pictures
 exports.index = index;
 
 function index(req, res) {
 
-  // set up the url to use for paging links
-  var linkUrl = getLinkUrl(req.originalUrl);
+  // Assign the query params
+  var offset = req.query.offset || defaultSettings.offset;
+  var limit = req.query.limit || defaultSettings.limit;
+  var tags = defaultSettings.tags;
 
-  // Assign the Flickr Api query params
-  var offset = req.query.offset || defaultOffset;
-  var limit = req.query.limit || defaultLimit;
-  var tags = req.query.tags;
+  if(req.query.tags) {
+    tags = tags + ',' + req.query.tags;
+  }
 
-  console.log(tags);
+  pictureData.loadPictures(offset, limit, tags, function (error, result) {
+    if (!error) {//&& result.stat === 'ok') {
 
-  // Set up the Flickr loader
-  var flickr = new flickrLoader(offset, limit, defaultTags, tags);
-
-  request.get(flickr.options,  function (error, response, body) {
-    if (!error && response.statusCode === 200) {
-
-      var payload = flickr.mapToResponse(body, linkUrl, tags);
+      var payload = pictureService.buildPictureResponse(result, req.originalUrl, req.query.tags);
 
       if (payload.meta.result.status === "fail")
       {
         console.log("Failure: code (" + payload.meta.result.code + "), " + payload.meta.result.message);
-
         return res.send(500, 'Internal Server Error');
       }
       else {
@@ -41,17 +33,4 @@ function index(req, res) {
       }
     }
   });
-}
-
-function getLinkUrl(originalUrl) {
-  // find the query string params
-  var queryStringStartPosition = originalUrl.indexOf('?');
-
-  // set up the url to use for paging links
-  var linkUrl = originalUrl;
-  if(queryStringStartPosition) {
-    linkUrl = originalUrl.substring(0, queryStringStartPosition);
-  }
-
-  return linkUrl;
 }

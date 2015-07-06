@@ -2,24 +2,12 @@
   'use strict';
 
   angular.module('app')
-    .config(routeConfig)
-    //.run(appRun);
+    .config(routeConfig);
 
-  routeConfig.$inject = ['$routeProvider', '$locationProvider'];
+  routeConfig.$inject = ['$locationProvider'];
 
-  function routeConfig($routeProvider, $locationProvider) {
-
-
+  function routeConfig($locationProvider) {
     $locationProvider.html5Mode(true);
   }
-
-  /*appRun.$inject = ['$rootScope'];
-
-  function appRun($rootScope) {
-    $rootScope.$on('$routeChangeSuccess', function (event, current) {
-      $rootScope.title = current.$$route.title;
-    });
-  }*/
-
 })();
 
