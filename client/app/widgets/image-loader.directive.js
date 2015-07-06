@@ -20,16 +20,18 @@
 
       var picture = scope.picture;
 
-      scope.isLoading = true;
-      scope.newHeight = calculateHeight(element[0], picture);
+      if(picture) {
+        scope.isLoading = true;
+        scope.newHeight = calculateHeight(element[0], picture);
 
-      var image = new Image();
+        var image = new Image();
 
-      image.addEventListener('load', imageLoadComplete);
-      image.addEventListener('error', imageLoadFailed);
+        image.addEventListener('load', imageLoadComplete);
+        image.addEventListener('error', imageLoadFailed);
 
-      image.src = picture.url;
-      image.alt = picture.title;
+        image.src = picture.url;
+        image.alt = picture.title;
+      }
 
       function imageLoadComplete() {
 

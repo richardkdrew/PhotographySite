@@ -20,7 +20,9 @@ function pictureService() {
     picturesResponse.meta.paging = pagingService.getPagingMetadata(payload);
     picturesResponse.meta.result = mapResultMetadata(payload);
 
-    if(payload.photos.photo) {
+    console.log(payload.photos.photo);
+
+    if(payload.photos.photo && payload.photos.photo.length > 0) {
       var limit = picturesResponse.meta.paging.limit;
       var offset = picturesResponse.meta.paging.offset;
       var total = picturesResponse.meta.paging.total;

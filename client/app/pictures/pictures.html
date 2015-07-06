@@ -1,8 +1,9 @@
-<div class="grid">
+<div class="grid" ng-show="vm.hasMore">
   <div ng-repeat='picture in vm.pictures | orderBy : id' class="item">
     <image-loader picture="picture" />
   </div>
 </div>
+<div ng-show="vm.ready && !vm.hasMore">Blah, blah!</div>
 
 <div class="clear-fix"></div>
 
