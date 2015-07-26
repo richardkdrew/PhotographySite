@@ -1,2 +1,2 @@
 # Photo Site
-My personal photography site.
+Photography site template.
