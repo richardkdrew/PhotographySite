@@ -1,2 +1,2 @@
-# photo-site
+# Photo Site
 My personal photography site.
