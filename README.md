@@ -1,2 +1,2 @@
 # Photo Site
-Photography site template.
+Template for Photography site.
