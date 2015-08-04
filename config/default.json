@@ -1,16 +1,22 @@
 {
   "Flickr": {
     "apiConfig": {
-      "url": "https://api.flickr.com/services/rest/",
-      "timeout": 10000,
+      "api_key": "",
+      "secret": "",
+      "access_token": "",
+      "access_token_secret": "",
       "qs": {
-        "api_key": "36862b3eb779f31ad749a8b561b730b6",
-        "method": "flickr.photos.search",
+        "authenticated": true,
         "tag_mode": "all",
         "format": "json",
-        "extras": "url_m",
+        "extras": "url_m,tags",
         "nojsoncallback": 1
       }
+    },
+    "defaults": {
+      "tags": "aston,martin",
+      "offset": 0,
+      "limit": 20
     }
   }
 }

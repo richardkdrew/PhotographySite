@@ -34,9 +34,6 @@ function pictureService() {
     return picturesResponse;
 
     function mapPictures(pictures) {
-      // Sort by id
-      pictures .sort(function(a,b) {return a.id - b.id});
-
       var mappedPictures = [];
 
       pictures.forEach(function(element) {
@@ -44,6 +41,8 @@ function pictureService() {
         var picture = {id: element.id, title: element.title, url: element.url_m, width: Number(element.width_m), height: Number(element.height_m), tags: element.tags };
         mappedPictures.push(picture);
       });
+      // Sort by id
+      pictures .sort(function(a,b) {return a.id - b.id});
 
       return mappedPictures;
     }
