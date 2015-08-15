@@ -6,7 +6,7 @@ var request = require('supertest');
 
 describe('GET /api/v1/pictures', function() {
 
-  it('should respond with JSON object', function(done) {
+  it('should respond with a JSON object', function(done) {
     request(app)
       .get('/api/v1/pictures')
       .expect(200)
