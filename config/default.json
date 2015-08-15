@@ -1,23 +1,19 @@
 {
   "Flickr": {
     "apiConfig": {
-      "api_key": "",
-      "secret": "",
-      "access_token": "",
-      "access_token_secret": "",
+      "secret": "53be01ae1bf6f9d7",
       "qs": {
         "authenticated": true,
-        "user_id": "",
-        "tag_mode": true,
+        "user_id": "19632847@N00",
+        "tag_mode": "all",
         "format": "json",
         "extras": "url_m,tags",
         "nojsoncallback": 1
       }
     },
     "defaults": {
-      "tags": "",
       "offset": 0,
-      "limit": 26
+      "limit": 20
     }
   }
 }

@@ -34,6 +34,12 @@ server.listen(port, config.ip, function () {
     '\n__dirname = ' + __dirname  +
     '\nprocess.cwd = ' + process.cwd());
   //console.log('Express server listening on %d, in %s mode', config.port, environment);
+
+  console.log("API Details:");
+  console.log("API_KEY: " + process.env.API_KEY);
+  console.log("SECRET: " + process.env.SECRET);
+  console.log("ACCESS_TOKEN: " + process.env.ACCESS_TOKEN);
+  console.log("ACCESS_TOKEN_SECRET: " + process.env.ACCESS_TOKEN_SECRET);
 });
 
 // Expose app
