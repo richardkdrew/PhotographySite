@@ -62,17 +62,17 @@
 
       if(tag) {
         url = url + '&tags=' + tag;
-      }
 
-      // if we're talking about the same category/tag then get the next link (if there is one)
-      if(self.tag === tag) {
-        // if there are links alter the url accordingly
-        var links = self.paging.links;
-        if (links) {
-          url = links.next;
+        // if we're talking about the same category/tag then get the next link (if there is one)
+        if(self.tag === tag) {
+          // if there are links alter the url accordingly
+          var links = self.paging.links;
+          if (links) {
+            url = links.next;
+          }
         }
+        self.tag = tag;
       }
-      self.tag = tag;
 
       return url;
     }

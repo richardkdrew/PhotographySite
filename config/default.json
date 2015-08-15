@@ -7,16 +7,17 @@
       "access_token_secret": "",
       "qs": {
         "authenticated": true,
-        "tag_mode": "all",
+        "user_id": "",
+        "tag_mode": true,
         "format": "json",
         "extras": "url_m,tags",
         "nojsoncallback": 1
       }
     },
     "defaults": {
-      "tags": "aston,martin",
+      "tags": "",
       "offset": 0,
-      "limit": 20
+      "limit": 26
     }
   }
 }

@@ -1,6 +1,6 @@
-<div class="grid" ng-show="vm.hasMore">
+<div class="grid">
   <div ng-repeat='picture in vm.pictures | orderBy : id' class="item">
-    <image-loader picture="picture" />
+    <picture-loader picture="picture" />
   </div>
 </div>
 <div ng-show="vm.ready && !vm.hasMore">Blah, blah!</div>

@@ -3,13 +3,13 @@
 
   angular
     .module('app.widgets')
-    .directive('imageLoader', imageLoader);
+    .directive('pictureLoader', pictureLoader);
 
-  function imageLoader() {
+  function pictureLoader() {
     return {
-      restrict: 'AE',
+      restrict: 'E',
       replace: true,
-      templateUrl: 'app/widgets/image-loader.html',
+      templateUrl: 'app/widgets/picture-loader.html',
       scope: {
         picture: '='
       },
@@ -18,9 +18,9 @@
 
     function link(scope, element) {
 
-      var picture = scope.picture;
+      if(scope.picture) {
+        var picture = scope.picture;
 
-      if(picture) {
         scope.isLoading = true;
         scope.newHeight = calculateHeight(element[0], picture);
 
@@ -42,7 +42,7 @@
           element.css({ "width": element[0].clientWidth });
           element.css({ "height": scope.newHeight });
           element.removeAttr("height");
-          scope.imageSrc = image.src;
+          scope.pictureSrc = image.src;
           scope.isLoading = false;
         });
       }
