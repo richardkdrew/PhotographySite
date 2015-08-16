@@ -32,7 +32,7 @@ describe('controller: menu', function () {
         expect(controller).toBeDefined();
     });
 
-    describe('after initialise function is called', function() {
+    describe('after activate function is called', function() {
 
         it('should have 3 menu items loaded', function() {
             expect(controller.items.length).toEqual(3);

@@ -1,6 +1,12 @@
 'use strict';
 
-var Flickr = require("flickrapi");
+var Flickr = require("flickrapi"),
+    flickrOptions = {
+        api_key             : process.env.API_KEY,
+        secret              : process.env.SECRET,
+        access_token        : process.env.ACCESS_TOKEN,
+        access_token_secret : process.env.ACCESS_TOKEN_SECRET
+    };
 var options = require("config").get("Flickr.apiConfig");
 var defaultSettings = require("config").get('Flickr.defaults');
 
@@ -34,14 +40,8 @@ function mapperService() {
         options.qs.per_page = limit;
         options.qs.tags = tags;
 
-        // Set up the authentication details
-        options.api_key = process.env.API_KEY;
-        //options.secret              = process.env.SECRET;
-        options.access_token = process.env.ACCESS_TOKEN;
-        options.access_token_secret = process.env.ACCESS_TOKEN_SECRET;
-
         // Authenticate with Flickr
-        Flickr.authenticate(options, function (error, flickr) {
+        Flickr.authenticate(flickrOptions, function (error, flickr) {
             // search for photos
             flickr.photos.search(options.qs, callback);
         });
