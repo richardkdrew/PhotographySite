@@ -41,6 +41,7 @@
     "grunt-env": "^0.4.4",
     "grunt-express-server": "^0.4.19",
     "grunt-google-cdn": "^0.4.3",
+    "grunt-karma": "~0.8.2",
     "grunt-mocha-test": "^0.12.7",
     "grunt-newer": "^1.1.0",
     "grunt-ng-annotate": "^0.10.0",
