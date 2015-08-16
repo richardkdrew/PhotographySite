@@ -22,7 +22,7 @@ module.exports = function(config) {
       'client/app/**/*.js',
       'client/app/**/*.html',
 
-      'client/test/lib/mockData.js',
+      //'client/test/lib/mockData.js',
 
       // all specs ... comment out during early test training
       'client/app/**/*.spec.js'
