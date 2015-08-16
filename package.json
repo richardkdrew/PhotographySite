@@ -69,6 +69,7 @@
     "karma-script-launcher": "~0.1.0",
     "karma-teamcity-reporter": "^0.2.0",
     "mocha": "^2.2.5",
+    "mocha-teamcity-reporter": "0.0.4",
     "time-grunt": "^1.1.0"
   },
   "engines": {
