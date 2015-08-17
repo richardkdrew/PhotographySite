@@ -627,6 +627,18 @@ module.exports = function (grunt) {
     grunt.task.run(['serve']);
   });
 
+  grunt.registerTask('rich', function () {
+    var packageJson = require('./package.json');
+    console.log("##teamcity[buildNumber '" + packageJson.version + "']")
+    //console.log(packageJson.version);
+  });
+
+  grunt.registerTask('ci-build', function () {
+    grunt.task.run(['build']);
+    grunt.task.run(['version:project:patch']);
+    grunt.task.run(['rich']);
+  });
+
   grunt.registerTask('test', function(target) {
     if (target === 'server') {
       return grunt.task.run([
@@ -685,8 +697,7 @@ module.exports = function (grunt) {
     'cssmin',
     'uglify',
     'rev',
-    'usemin',
-    'version:project:patch'
+    'usemin'
   ]);
 
   grunt.registerTask('default', [
