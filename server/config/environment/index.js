@@ -28,6 +28,13 @@ var all = {
 
 };
 
+// Ensure that the necessary Environment variables are set
+requiredProcessEnv('API_KEY');
+requiredProcessEnv('SECRET');
+requiredProcessEnv('ACCESS_TOKEN');
+requiredProcessEnv('ACCESS_TOKEN_SECRET');
+requiredProcessEnv('DEFAULT_TAGS');
+
 // Export the config object based on the NODE_ENV
 // ==============================================
 module.exports = _.merge(
