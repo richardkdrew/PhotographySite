@@ -627,18 +627,6 @@ module.exports = function (grunt) {
     grunt.task.run(['serve']);
   });
 
-  grunt.registerTask('teamcity-report-buildnumber', function () {
-    var packageJson = require('./package.json');
-    console.log("##teamcity[buildNumber '" + packageJson.version + "']")
-    //console.log(packageJson.version);
-  });
-
-  grunt.registerTask('ci-build', function () {
-    grunt.task.run(['build']);
-    grunt.task.run(['version:project:patch']);
-    grunt.task.run(['teamcity-report-buildnumber']);
-  });
-
   grunt.registerTask('test', function(target) {
     if (target === 'server') {
       return grunt.task.run([
@@ -681,28 +669,57 @@ module.exports = function (grunt) {
     ]);
   });
 
-  grunt.registerTask('build', [
-    'clean:dist',
-    'injector:less',
-    'concurrent:dist',
-    'injector',
-    'wiredep',
-    'useminPrepare',
-    'autoprefixer',
-    'ngtemplates',
-    'concat',
-    'ngAnnotate',
-    'copy:dist',
-    'cdnify',
-    'cssmin',
-    'uglify',
-    'rev',
-    'usemin'
-  ]);
+  grunt.registerTask('build', function(target) {
+    if (target === 'ci') {
+      grunt.task.run([
+        'teamcity-report-buildnumber'
+      ]);
+    }
+
+    else if (target === 'minor') {
+      grunt.task.run([
+        'version:project:minor'
+      ]);
+    }
+
+    else if (target === 'major') {
+      grunt.task.run([
+        'version:project:major'
+      ]);
+    }
+
+    else grunt.task.run([
+        'version:project:patch'
+      ]);
+
+    grunt.task.run([
+      'clean:dist',
+      'injector:less',
+      'concurrent:dist',
+      'injector',
+      'wiredep',
+      'useminPrepare',
+      'autoprefixer',
+      'ngtemplates',
+      'concat',
+      'ngAnnotate',
+      'copy:dist',
+      'cdnify',
+      'cssmin',
+      'uglify',
+      'rev',
+      'usemin'
+    ]);
+  });
 
   grunt.registerTask('default', [
     'newer:jshint',
     'test',
     'build'
   ]);
+
+  grunt.registerTask('teamcity-report-buildnumber', function () {
+    var packageJson = require('./package.json');
+    console.log("##teamcity[buildNumber '" + packageJson.version + "']")
+  });
 };
