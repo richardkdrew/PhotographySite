@@ -627,7 +627,7 @@ module.exports = function (grunt) {
     grunt.task.run(['serve']);
   });
 
-  grunt.registerTask('rich', function () {
+  grunt.registerTask('teamcity-report-buildnumber', function () {
     var packageJson = require('./package.json');
     console.log("##teamcity[buildNumber '" + packageJson.version + "']")
     //console.log(packageJson.version);
@@ -636,7 +636,7 @@ module.exports = function (grunt) {
   grunt.registerTask('ci-build', function () {
     grunt.task.run(['build']);
     grunt.task.run(['version:project:patch']);
-    grunt.task.run(['rich']);
+    grunt.task.run(['teamcity-report-buildnumber']);
   });
 
   grunt.registerTask('test', function(target) {
