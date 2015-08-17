@@ -1,6 +1,6 @@
 {
   "name": "photo-site",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "main": "server/app.js",
   "dependencies": {
     "body-parser": "^1.5.2",
@@ -51,6 +51,7 @@
     "grunt-rev": "^0.1.0",
     "grunt-svgmin": "^2.0.1",
     "grunt-usemin": "^3.0.0",
+    "grunt-version": "^1.0.0",
     "grunt-wiredep": "^2.0.0",
     "jit-grunt": "^0.9.1",
     "jshint-stylish": "^1.0.1",
