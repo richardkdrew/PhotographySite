@@ -1,10 +1,8 @@
 {
   "Flickr": {
     "apiConfig": {
-      "secret": "53be01ae1bf6f9d7",
       "qs": {
         "authenticated": true,
-        "user_id": "19632847@N00",
         "tag_mode": "all",
         "format": "json",
         "extras": "url_m,tags",

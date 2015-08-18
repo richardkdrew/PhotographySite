@@ -34,6 +34,7 @@ requiredProcessEnv('SECRET');
 requiredProcessEnv('ACCESS_TOKEN');
 requiredProcessEnv('ACCESS_TOKEN_SECRET');
 requiredProcessEnv('DEFAULT_TAGS');
+requiredProcessEnv('USER_ID');
 
 // Export the config object based on the NODE_ENV
 // ==============================================

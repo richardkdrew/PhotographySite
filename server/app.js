@@ -35,11 +35,18 @@ server.listen(port, config.ip, function () {
     '\nprocess.cwd = ' + process.cwd());
   //console.log('Express server listening on %d, in %s mode', config.port, environment);
 
-  console.log("API Details:");
-  console.log("API_KEY: " + process.env.API_KEY);
-  console.log("SECRET: " + process.env.SECRET);
-  console.log("ACCESS_TOKEN: " + process.env.ACCESS_TOKEN);
-  console.log("ACCESS_TOKEN_SECRET: " + process.env.ACCESS_TOKEN_SECRET);
+  if(environment !== 'production') {
+    console.log("\n");
+    console.log("FLICKR ENVIRONMENT DETAILS:");
+    console.log("API_KEY: " + process.env.API_KEY);
+    console.log("SECRET: " + process.env.SECRET);
+    console.log("ACCESS_TOKEN: " + process.env.ACCESS_TOKEN);
+    console.log("ACCESS_TOKEN_SECRET: " + process.env.ACCESS_TOKEN_SECRET);
+    console.log("DEFAULT_TAGS: " + process.env.DEFAULT_TAGS);
+    console.log("USER_ID: " + process.env.USER_ID);
+    console.log("\n");
+  }
+
 });
 
 // Expose app
