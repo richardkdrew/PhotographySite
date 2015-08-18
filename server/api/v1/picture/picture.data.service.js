@@ -5,10 +5,7 @@ var Flickr = require("flickrapi"),
         api_key             : process.env.API_KEY,
         secret              : process.env.SECRET,
         access_token        : process.env.ACCESS_TOKEN,
-        access_token_secret : process.env.ACCESS_TOKEN_SECRET,
-        options: {
-          user_id: process.env.USER_ID,
-        }
+        access_token_secret : process.env.ACCESS_TOKEN_SECRET
     };
 var options = require("config").get("Flickr.apiConfig");
 var defaultSettings = require("config").get('Flickr.defaults');
@@ -42,6 +39,7 @@ function mapperService() {
         options.qs.page = page;
         options.qs.per_page = limit;
         options.qs.tags = tags;
+        options.qs.user_id = process.env.USER_ID;
 
         // Authenticate with Flickr
         Flickr.authenticate(flickrOptions, function (error, flickr) {
