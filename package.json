@@ -1,6 +1,6 @@
 {
   "name": "photo-site",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "server/app.js",
   "dependencies": {
     "body-parser": "^1.5.2",
@@ -71,6 +71,7 @@
     "karma-teamcity-reporter": "^0.2.0",
     "mocha": "^2.2.5",
     "mocha-teamcity-reporter": "0.0.4",
+    "q": "^2.0.3",
     "time-grunt": "^1.1.0"
   },
   "engines": {

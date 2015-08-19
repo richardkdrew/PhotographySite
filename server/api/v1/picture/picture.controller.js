@@ -1,26 +1,20 @@
 'use strict';
 
 var pictureService = require("./picture.service.js")();
-var pictureData = require("./picture.data.service.js")();
-
 
 // Get list of pictures
 exports.index = index;
 
 function index(req, res) {
 
-    pictureData.loadPictures(req.query.offset, req.query.limit, req.query.tags, function (error, result) {
-        if (!error) {//&& result.stat === 'ok') {
+  pictureService.getPictures(req).then(getPicturesComplete, getPicturesFailed);
 
-            var payload = pictureService.buildPictureResponse(result, req.originalUrl, req.query.tags);
+  function getPicturesComplete(payload) {
+    res.json(payload);
+  }
 
-            if (payload.meta.result.status === "fail") {
-                console.log("Failure: code (" + payload.meta.result.code + "), " + payload.meta.result.message);
-                return res.send(500, 'Internal Server Error');
-            }
-            else {
-                res.json(payload);
-            }
-        }
-    });
+  function getPicturesFailed(error, payload) {
+    console.log("Error: " + error, payload);
+    return res.send(500, 'Internal Server Error');
+  }
 }

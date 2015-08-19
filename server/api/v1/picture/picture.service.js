@@ -1,66 +1,48 @@
 'use strict';
 
-var pagingService = require("./paging.service.js")();
+var q = require("q");
+var pictureDataService = require("./picture.data.service.js")();
+var pictureMappingService = require("./picture.mapping.service.js")();
+var defaultSettings = require("config").get('Flickr.defaults');
 
 module.exports = pictureService;
 
 function pictureService() {
 
-    var service = {
-        buildPictureResponse: buildPictureResponse
-    };
+  var service = {
+    getPictures: getPictures
+  };
 
-    return service;
+  return service;
 
-    function buildPictureResponse(data, url, tags) {
-        var payload = data;
-        var picturesResponse = {};
-        picturesResponse.meta = {};
+  function getPictures(req) {
+    var deferred = q.defer();
 
-        picturesResponse.meta.paging = pagingService.getPagingMetadata(payload);
-        picturesResponse.meta.result = mapResultMetadata(payload);
+    // Capture the query params
+    var offset = req.query.offset || defaultSettings.offset;
+    var limit = req.query.limit || defaultSettings.limit;
+    var tags = req.query.tags;
+    var url = req.originalUrl;
+    var defaultTags = process.env.DEFAULT_TAGS;
 
-        if (payload.photos.photo && payload.photos.photo.length > 0) {
-            var limit = picturesResponse.meta.paging.limit;
-            var offset = picturesResponse.meta.paging.offset;
-            var total = picturesResponse.meta.paging.total;
-
-            picturesResponse.pictures = mapPictures(payload.photos.photo);
-            picturesResponse.meta.paging.links = pagingService.getPagingLinks(limit, offset, total, tags, url);
-        }
-
-        return picturesResponse;
-
-        function mapPictures(pictures) {
-            var mappedPictures = [];
-
-            pictures.forEach(function (element) {
-
-                var picture = {
-                    id: element.id,
-                    title: element.title,
-                    url: element.url_m,
-                    width: Number(element.width_m),
-                    height: Number(element.height_m),
-                    tags: element.tags
-                };
-                mappedPictures.push(picture);
-            });
-            // Sort by id
-            pictures.sort(function (a, b) {
-                return a.id - b.id
-            });
-
-            return mappedPictures;
-        }
-
-        function mapResultMetadata(payload) {
-            var mappedResult = {};
-            mappedResult.status = payload.stat;
-            mappedResult.code = payload.code;
-            mappedResult.message = payload.message;
-
-            return mappedResult;
-        }
+    if (tags) {
+      tags = defaultTags + ',' + tags;
     }
+
+    // load the pictures
+    pictureDataService.loadPictureData(offset, limit, tags).then(loadPictureDataComplete, loadPictureDataFailed);
+
+    function loadPictureDataComplete(data) {
+      return  pictureMappingService.mapPicturesResponse(data, url, tags).then(function(result) {
+        deferred.resolve(result);
+      });
+    }
+
+    function loadPictureDataFailed(error, data) {
+      console.error('Load failed for pictureService.loadPictures.' + error, data);
+      deferred.reject(error, data);
+    }
+
+    return deferred.promise;
+  }
 }

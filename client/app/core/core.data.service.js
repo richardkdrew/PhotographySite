@@ -27,9 +27,9 @@
         deferred.resolve(data);
       }
 
-      function getPicturesFailed(data, code) {
-        console.error('XHR Failed for getPictures.' + data, code);
-        deferred.reject(data);
+      function getPicturesFailed(error, data) {
+        console.error('XHR Failed for getPictures.' + error, data);
+        deferred.reject(error, data);
       }
 
       return deferred.promise;

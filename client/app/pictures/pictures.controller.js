@@ -33,7 +33,6 @@
       var tag = $routeParams.tag;
 
       return picturesService.getPictures(tag).then(function (data) {
-        console.log(data);
         vm.pictures = vm.pictures.concat(data);
         vm.hasMore = picturesService.hasMore();
         vm.loadingMore = false;
