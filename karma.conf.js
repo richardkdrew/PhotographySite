@@ -12,8 +12,10 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
       'client/bower_components/angular/angular.js',
+      'client/bower_components/angular-animate/angular-animate.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       'client/bower_components/angular-route/angular-route.js',
+      'client/bower_components/angular-sanitize/angular-sanitize.js',
       'client/bower_components/lodash/dist/lodash.compat.js',
       'client/bower_components/sinonjs/sinon.js',
       'client/app/**/*.module.js',
@@ -22,16 +24,14 @@ module.exports = function(config) {
       'client/app/**/*.js',
       'client/app/**/*.html',
 
-      //'client/test/lib/mockData.js',
+      'client/test/lib/mockData.js',
 
       // all specs ... comment out during early test training
       'client/app/**/*.spec.js'
     ],
 
     preprocessors: {
-      '**/*.jade': 'ng-jade2js',
-      '**/*.html': 'html2js',
-      '**/*.coffee': 'coffee'
+      '**/*.html': 'html2js'
     },
 
     // test results reporter to use
@@ -51,7 +51,7 @@ module.exports = function(config) {
     exclude: [],
 
     // web server port
-    port: 8080,
+    port: 8085,
 
     // level of logging
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
