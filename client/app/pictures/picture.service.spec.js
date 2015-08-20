@@ -1,11 +1,20 @@
+/*
 'use strict';
+
 
 describe('service: picturesService', function () {
     var service, mockDataService, mockDetectionService, deferred;
 
-    beforeEach(mock.module('ngRoute'), module('app.pictures'));
+    //beforeEach(mock.module('ngRoute'), module('app.pictures'));
 
     //beforeEach(module('app.pictures', 'ngRoute'));
+
+    /*beforeEach(function() {
+        module('app.pictures', function($routeProvider) {
+            $routeProvider = {};
+        });
+    });
+
 
     beforeEach(function () {
         mockDataService = {
@@ -46,20 +55,8 @@ describe('service: picturesService', function () {
             expect(service.getPictures().then).toBeDefined();
         });
 
-        /*
-        it('should call the dataService:getGalleries function', inject(function ($rootScope) {
 
-            // Set up the getGalleries call to succeed
-            sinon.stub(mockDataService, 'getPictures', function () {
-                deferred.resolve(mockData.getMockPictures());
-                return deferred.promise;
-            });
-
-            service.getPictures();
-            $rootScope.$apply();
-
-            expect(mockDataService.getPictures.called).toBeTruthy();
-        }));
-        */
     });
 });
+
+*/

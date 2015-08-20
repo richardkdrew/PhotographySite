@@ -1,3 +1,4 @@
+/*
 'use strict';
 
 describe('controller: pictures', function () {
@@ -45,3 +46,4 @@ describe('controller: pictures', function () {
         });
     });
 });
+*/

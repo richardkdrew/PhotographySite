@@ -1,4 +1,6 @@
+/*
 'use strict';
+/
 
 describe('controller: picture', function () {
     var controller, mockPictureDataService = {};
@@ -16,3 +18,4 @@ describe('controller: picture', function () {
         });
     })
 });
+*/
