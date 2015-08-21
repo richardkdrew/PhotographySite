@@ -1,14 +1,17 @@
-<div class="grid">
-  <div ng-repeat='picture in vm.pictures | orderBy : id' class="item">
-    <picture-loader picture="picture" />
+<div ng-switch="vm.hasSome">
+  <div ng-show="vm.ready" ng-switch-when='true'>
+    <div class="grid" >
+      <div ng-repeat='picture in vm.pictures | orderBy : id' class="item">
+        <picture-loader picture="picture" />
+      </div>
+    </div>
+    <div class="clear-fix"></div>
+    <div ng-switch="vm.loadingMore" ng-if="vm.hasMore" class="load-more-container">
+      <div ng-switch-when='true'><img ng-src="/assets/images/spinner.gif" alt="Loading more pictures..." /></div>
+      <div ng-switch-default class="load-more"><a ng-click='vm.loadMore()'>Load more pictures</a></div>
+    </div>
   </div>
-</div>
-<div ng-show="vm.ready && !vm.hasMore">Blah, blah!</div>
 
-<div class="clear-fix"></div>
-
-<div ng-switch="vm.loadingMore" ng-if="vm.hasMore" class="load-more-container">
-  <div ng-switch-when='true'><img ng-src="/assets/images/spinner.gif" alt="Loading more pictures..." /></div>
-  <div ng-switch-default class="load-more"><a ng-click='vm.loadMore()'>Load more pictures</a></div>
+  <div ng-show="vm.ready"  ng-switch-default>Blah, blah!</div>
 </div>
 <div class="loading-screen feature" ng-show="!vm.ready"></div>

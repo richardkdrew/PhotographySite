@@ -18,7 +18,8 @@
 
     var service = {
       getPictures : getPictures,
-      hasMore     : hasMore
+      hasMore     : hasMore,
+      hasSome     : hasSome
     };
     return service;
 
@@ -44,7 +45,11 @@
     }
 
     function hasMore() {
-      return self.paging.offset < self.paging.total;
+      return (self.paging.limit + self.paging.offset) < self.paging.total;
+    }
+
+    function hasSome() {
+      return self.paging.total > 0;
     }
 
     function setPerPage() {

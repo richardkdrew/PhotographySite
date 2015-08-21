@@ -174,20 +174,21 @@
         a {
           display: block;
           line-height: 3em;
-          cursor: hand;
+          cursor: pointer;
           text-decoration: none;
-          :hover {
-            color: @nav-bg-highlight-color;
+          &:hover {
+            background-color: @nav-bg-highlight-color;
           }
         }
 
         .active {
-          background-color: @nav-bg-highlight-color;
+          background: @nav-bg-colour;
           cursor: default;
           font-weight: bold;
-          color: @main-font-color;
-          :hover {
+          color: @nav-bg-highlight-color;
+          &:hover {
             color: @nav-bg-highlight-color;
+            background: @nav-bg-colour;
           }
         }
       }

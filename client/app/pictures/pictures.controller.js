@@ -13,6 +13,7 @@
     vm.pictures = [];
     vm.loadMore = loadMore;
     vm.hasMore = false;
+    vm.hasSome = false;
     vm.loadingMore = false;
     vm.ready = false;
 
@@ -35,6 +36,7 @@
       return picturesService.getPictures(tag).then(function (data) {
         vm.pictures = vm.pictures.concat(data);
         vm.hasMore = picturesService.hasMore();
+        vm.hasSome = picturesService.hasSome();
         vm.loadingMore = false;
         return vm.pictures;
       })
