@@ -5,9 +5,9 @@
     .module('app.pictures')
     .controller('Pictures', Pictures);
 
-  Pictures.$inject = ['$routeParams','picturesService'];
+  Pictures.$inject = ['$routeParams','picturesService', 'modalService'];
 
-  function Pictures($routeParams, picturesService) {
+  function Pictures($routeParams, picturesService, modalService) {
 
     var vm = this;
     vm.pictures = [];
@@ -16,6 +16,8 @@
     vm.hasSome = false;
     vm.loadingMore = false;
     vm.ready = false;
+    vm.tag = "";
+    vm.viewPicture = viewPicture;
 
     activate();
 
@@ -31,15 +33,25 @@
       vm.loadingMore = true;
 
       // Grab the tag from the url
-      var tag = $routeParams.tag;
+      vm.tag = $routeParams.tag;
 
-      return picturesService.getPictures(tag).then(function (data) {
+      // if the tags are different reset the pictures collection
+      if(vm.tag !== picturesService.tag) {
+        vm.pictures = [];
+      }
+
+      return picturesService.getPictures(vm.tag).then(function (data) {
         vm.pictures = vm.pictures.concat(data);
         vm.hasMore = picturesService.hasMore();
         vm.hasSome = picturesService.hasSome();
+        vm.tag = picturesService.getTag();
         vm.loadingMore = false;
         return vm.pictures;
       })
+    }
+
+    function viewPicture(picture) {
+      modalService.open(picture);
     }
   }
 })();

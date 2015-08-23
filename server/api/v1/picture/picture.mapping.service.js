@@ -50,7 +50,7 @@ function pictureMappingService() {
           url: element.url_m,
           width: Number(element.width_m),
           height: Number(element.height_m),
-          tags: element.tags
+          tags: element.tags.split(" ")
         };
         mappedPictures.push(picture);
       });

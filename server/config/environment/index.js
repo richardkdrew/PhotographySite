@@ -23,18 +23,36 @@ var all = {
 
   // Secret for session, you will want to change this and make it an environment variable
   secrets: {
-    session: 'photo-site-secret'
+    session: 'photo-site-secret-CeZZvHzKn8pfS7f5jwuYLFJ4MCdiHi0dCavZYnhkfAZj7qDnSGcfqJKsx1vl'
   }
+
+  /*Flickr: {
+    apiConfig: {
+      qs: {
+        authenticated: true,
+        tag_mode: "all",
+        format: "json",
+        extras: "url_m,tags",
+        nojsoncallback: 1
+      }
+    },
+    defaults: {
+      offset: 0,
+      limit: 20
+    }
+  }*/
 
 };
 
 // Ensure that the necessary Environment variables are set
+
 requiredProcessEnv('API_KEY');
 requiredProcessEnv('SECRET');
 requiredProcessEnv('ACCESS_TOKEN');
 requiredProcessEnv('ACCESS_TOKEN_SECRET');
 requiredProcessEnv('DEFAULT_TAGS');
 requiredProcessEnv('USER_ID');
+
 
 // Export the config object based on the NODE_ENV
 // ==============================================

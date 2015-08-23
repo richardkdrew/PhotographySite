@@ -3,7 +3,6 @@
 var q = require("q");
 var pictureDataService = require("./picture.data.service.js")();
 var pictureMappingService = require("./picture.mapping.service.js")();
-var defaultSettings = require("config").get('Flickr.defaults');
 
 module.exports = pictureService;
 
@@ -17,6 +16,13 @@ function pictureService() {
 
   function getPictures(req) {
     var deferred = q.defer();
+
+    var defaultSettings = {
+      defaults: {
+        offset: 0,
+        limit: 20
+      }
+    };
 
     // Capture the query params
     var offset = req.query.offset || defaultSettings.offset;

@@ -2,59 +2,68 @@
 
 var q = require("q");
 var Flickr = require("flickrapi"),
-  flickrOptions = {
-    api_key: process.env.API_KEY,
-    secret: process.env.SECRET,
-    access_token: process.env.ACCESS_TOKEN,
-    access_token_secret: process.env.ACCESS_TOKEN_SECRET
-  };
-var options = require("config").get("Flickr.apiConfig");
+    flickrOptions = {
+        api_key: process.env.API_KEY,
+        secret: process.env.SECRET,
+        access_token: process.env.ACCESS_TOKEN,
+        access_token_secret: process.env.ACCESS_TOKEN_SECRET
+    };
 
 module.exports = pictureDataService;
 
 function pictureDataService() {
 
-  var service = {
-    loadPictureData: loadPictureDataFromFlickr
-  };
+    var service = {
+        loadPictureData: loadPictureDataFromFlickr
+    };
 
-  return service;
+    return service;
 
-  function loadPictureDataFromFlickr(offset, limit, tags) {
-    var deferred = q.defer();
+    function loadPictureDataFromFlickr(offset, limit, tags) {
+        var deferred = q.defer();
 
-    // Convert the offset and limit to Flickr paging params
-    var page = 1;
-    if (offset > 0) page = Math.round((offset / limit) + 1);
+        var options = {
+            qs: {
+                authenticated: true,
+                tag_mode: "all",
+                format: "json",
+                extras: "url_m,tags",
+                nojsoncallback: 1
+            }
+        };
 
-    // Set up the query string options
-    options.qs.page = page;
-    options.qs.per_page = limit;
-    options.qs.tags = tags;
-    options.qs.user_id = process.env.USER_ID;
+        // Convert the offset and limit to Flickr paging params
+        var page = 1;
+        if (offset > 0) page = Math.round((offset / limit) + 1);
 
-    // Authenticate with Flickr
-    Flickr.authenticate(flickrOptions, function (error, flickr) {
-      if (!error) {
+        // Set up the query string options
+        options.qs.page = page;
+        options.qs.per_page = limit;
+        options.qs.tags = tags;
+        options.qs.user_id = process.env.USER_ID;
 
-        // Search for photos
-        flickr.photos.search(options.qs, searchComplete);
-      }
-      else searchFailed(new Error("Authentication failed: " + error), flickr);
+        // Authenticate with Flickr
+        Flickr.authenticate(flickrOptions, function (error, flickr) {
+            if (!error) {
 
-      function searchComplete(error, data) {
-        if (error !== false || data.stat !== 'ok') {
-          searchFailed(new Error("The search failed: " + data), data);
-        }
-        else deferred.resolve(data);
-      }
+                // Search for photos
+                flickr.photos.search(options.qs, searchComplete);
+            }
+            else searchFailed(new Error("Authentication failed: " + error), flickr);
 
-      function searchFailed(error, data) {
-        console.error(error);
-        deferred.reject(error, data);
-      }
-    });
+            function searchComplete(error, data) {
+                if (error !== false || data.stat !== 'ok') {
+                    searchFailed(new Error("The search failed: " + data), data);
+                }
+                else deferred.resolve(data);
+            }
 
-    return deferred.promise;
-  }
+            function searchFailed(error, data) {
+                console.error(error);
+                deferred.reject(error, data);
+            }
+        });
+
+        return deferred.promise;
+    }
 }

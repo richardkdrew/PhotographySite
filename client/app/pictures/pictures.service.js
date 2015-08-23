@@ -19,7 +19,8 @@
     var service = {
       getPictures : getPictures,
       hasMore     : hasMore,
-      hasSome     : hasSome
+      hasSome     : hasSome,
+      getTag      : getTag
     };
     return service;
 
@@ -50,6 +51,10 @@
 
     function hasSome() {
       return self.paging.total > 0;
+    }
+
+    function getTag() {
+      return self.tag;
     }
 
     function setPerPage() {

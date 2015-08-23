@@ -11,7 +11,8 @@
      */
     'app.pictures',
     'app.pages',
-    'app.menu'
+    'app.menu',
+    'app.modal'
   ]);
 })();
 

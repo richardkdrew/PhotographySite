@@ -115,6 +115,7 @@
           cursor: default;
           font-weight: bold;
           color: @nav-font-color;
+
         }
       }
       :last-child:after {
@@ -183,12 +184,15 @@
 
         .active {
           background: @nav-bg-colour;
+          background: rgba(0, 0, 0, 0.8);
           cursor: default;
           font-weight: bold;
           color: @nav-bg-highlight-color;
+
           &:hover {
             color: @nav-bg-highlight-color;
             background: @nav-bg-colour;
+            background: rgba(0, 0, 0, 0.8);
           }
         }
       }
