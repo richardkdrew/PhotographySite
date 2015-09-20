@@ -47,9 +47,23 @@ function pictureMappingService() {
         var picture = {
           id: element.id,
           title: element.title,
-          url: element.url_m,
-          width: Number(element.width_m),
-          height: Number(element.height_m),
+          small: {
+            url: element.url_m,
+            width: Number(element.width_m),
+            height: Number(element.height_m)
+          },
+          medium:
+            {
+              url: element.url_c,
+              width: Number(element.width_c),
+              height: Number(element.height_c)
+            },
+          large:
+            {
+              url: element.url_o,
+              width: Number(element.width_o),
+              height: Number(element.height_o)
+            },
           tags: element.tags.split(" ")
         };
         mappedPictures.push(picture);

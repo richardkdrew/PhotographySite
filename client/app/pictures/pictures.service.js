@@ -14,7 +14,7 @@
     // Initialise some local params for paging and pictures
     self.pictures = [];
     self.paging = {};
-    self.tag = "";
+    self.tag = '';
 
     var service = {
       getPictures : getPictures,
@@ -33,12 +33,11 @@
 
       function getPicturesComplete(data) {
         self.paging = data.meta.paging;
-        console.log(self.paging);
         deferred.resolve(data.pictures);
       }
 
       function getPicturesFailed(data, code) {
-        console.error("Failed to retrieve Pictures", code, data);
+        console.error('Failed to retrieve Pictures', code, data);
         deferred.reject(data);
       }
 
@@ -72,17 +71,17 @@
 
       if(tag) {
         url = url + '&tags=' + tag;
-
-        // if we're talking about the same category/tag then get the next link (if there is one)
-        if(self.tag === tag) {
-          // if there are links alter the url accordingly
-          var links = self.paging.links;
-          if (links) {
-            url = links.next;
-          }
-        }
-        self.tag = tag;
       }
+
+      // if we're talking about the same category/tag then get the next link (if there is one)
+      if(self.tag === tag) {
+        // if there are links alter the url accordingly
+        var links = self.paging.links;
+        if (links) {
+          url = links.next;
+        }
+      }
+      self.tag = tag;
 
       return url;
     }

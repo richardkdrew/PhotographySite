@@ -15,17 +15,17 @@
   padding-bottom: 5px;
 }
 
-.item img, .item.picture, .item.loading {
+.item img, .picture, .item.loading {
   position: relative;
   display: block;
   width: 100%;
 }
 
-.item img:hover {
+/*.item img:hover {
   filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale"); /* Firefox 3.5+ */
-  filter: gray; /* IE6-9 */
-  -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
-}
+/*  filter: gray; /* IE6-9 */
+/*  -webkit-filter: grayscale(100%); /* Chrome 19+ & Safari 6+ */
+/*}*/
 
 .item a {
   display: block;
@@ -65,6 +65,13 @@
   position: relative;
   display: block;
   margin: 0 auto;
+}
+
+.single-picture {
+  max-width: 800px;
+  position: relative;
+  display: block;
+  width: 100%;
 }
 
 /* ===== == = === 37.5em (600px) === = == ===== */

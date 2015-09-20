@@ -377,7 +377,8 @@ module.exports = function (grunt) {
           src: [
             'package.json',
             'server/**/*',
-            'web.config'
+            'web.config',
+            'data/**/*'
           ]
         }
         ]
@@ -412,7 +413,7 @@ module.exports = function (grunt) {
       },
       azure: {
         options: {
-          remote: 'https://rd-deployment@rich-test.scm.azurewebsites.net:443/rich-test.git',
+          remote: 'https://rd-deployment@photosite-dev.scm.azurewebsites.net:443/photosite-dev.git',
           branch: 'master'
         }
       }

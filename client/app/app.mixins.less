@@ -18,6 +18,15 @@
   transform: translateY(-50%);
 }
 
+.vertical-horizontal-center() {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
 .border(@size, @colour, @radius) {
   border: @size solid @colour;
   -moz-border-radius: @radius;

@@ -13,7 +13,7 @@
       scope.$on('destroy', cleanUp);
 
       function menuTriggerClick() {
-        scope.$emit('ToggleMenu_Event');
+        scope.$emit('menu.toggle');
       }
 
       function cleanUp() {

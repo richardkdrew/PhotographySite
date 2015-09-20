@@ -8,7 +8,7 @@
   function menu($document) {
     return {
       replace: true,
-      restrict: "E",
+      restrict: 'E',
       templateUrl: 'app/components/menu/menu.html',
       link: link
     };
@@ -16,7 +16,7 @@
     function link(scope) {
 
       // Listen for the ToggleMenu event
-      scope.$on('ToggleMenu_Event', toggleMenu);
+      scope.$on('menu.toggle', toggleMenu);
 
       // Initialise the menu state
       //scope.menuState = !scope.menuState;

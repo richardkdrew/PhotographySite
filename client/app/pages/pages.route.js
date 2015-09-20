@@ -12,7 +12,7 @@
         templateUrl: 'app/pages/about/about.html',
         controller: 'About',
         controllerAs: 'vm',
-        title: "Richard Drew Photography : About Me"
+        title: 'Richard Drew Photography : About Me'
       });
   }
 })();

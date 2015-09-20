@@ -33,13 +33,13 @@ function pictureService() {
 
     if (tags) {
       tags = defaultTags + ',' + tags;
-    }
+    } else tags = defaultTags;
 
     // load the pictures
     pictureDataService.loadPictureData(offset, limit, tags).then(loadPictureDataComplete, loadPictureDataFailed);
 
     function loadPictureDataComplete(data) {
-      return  pictureMappingService.mapPicturesResponse(data, url, tags).then(function(result) {
+      return pictureMappingService.mapPicturesResponse(data, url, tags).then(function (result) {
         deferred.resolve(result);
       });
     }

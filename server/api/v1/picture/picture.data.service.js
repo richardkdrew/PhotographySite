@@ -5,6 +5,7 @@ var Flickr = require("flickrapi"),
     flickrOptions = {
         api_key: process.env.API_KEY,
         secret: process.env.SECRET,
+        user_id: process.env.USER_ID,
         access_token: process.env.ACCESS_TOKEN,
         access_token_secret: process.env.ACCESS_TOKEN_SECRET
     };
@@ -27,7 +28,7 @@ function pictureDataService() {
                 authenticated: true,
                 tag_mode: "all",
                 format: "json",
-                extras: "url_m,tags",
+                extras: "url_m,url_c,url_o,tags",
                 nojsoncallback: 1
             }
         };
@@ -42,25 +43,24 @@ function pictureDataService() {
         options.qs.tags = tags;
         options.qs.user_id = process.env.USER_ID;
 
+      console.log(flickrOptions);
+
         // Authenticate with Flickr
         Flickr.authenticate(flickrOptions, function (error, flickr) {
             if (!error) {
-
                 // Search for photos
                 flickr.photos.search(options.qs, searchComplete);
             }
-            else searchFailed(new Error("Authentication failed: " + error), flickr);
+            else deferred.reject(new Error("Authentication failed: " + error));
 
             function searchComplete(error, data) {
                 if (error !== false || data.stat !== 'ok') {
-                    searchFailed(new Error("The search failed: " + data), data);
+                    deferred.reject(new Error("Search failed: " + error));
                 }
-                else deferred.resolve(data);
-            }
-
-            function searchFailed(error, data) {
-                console.error(error);
-                deferred.reject(error, data);
+                else {
+                    console.log(options.qs);
+                    deferred.resolve(data);
+                }
             }
         });
 

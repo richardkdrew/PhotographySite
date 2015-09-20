@@ -1,0 +1,62 @@
+div.m-modals {
+  background-color: rgba( 0, 0, 0, 0.8 );
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+}
+
+div.m-modals.ng-hide {
+  background-color: rgba( 0, 0, 0, 0 );
+}
+
+div.m-modals.ng-hide-add.ng-hide-add-active,
+div.m-modals.ng-hide-remove.ng-hide-remove-active {
+  transition: 250ms ease all ;
+}
+
+div.m-modals > .modal {
+  background-color: @main-highlight-background-color;
+  border-radius: 3px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  padding: 5px;
+  paddin-bottom: 1px;
+  max-width: 100%;
+
+  .vertical-horizontal-center();
+}
+
+div.m-modals.ng-hide > .modal.ng-enter {
+  transition: 250ms ease top;
+}
+
+a.modal-close {
+    float: right;
+
+    cursor: pointer;
+    color: @main-font-color;
+    border: none; /*1px solid @main-bg-color;*/
+    border-radius: 35px;
+    background: @main-highlight-background-color;
+    font-size: 31px;
+    font-weight: bold;
+    display: inline-block;
+    line-height: 0;
+    padding: 15px 7px;
+
+    position: absolute;
+    right: -13px;
+    top: -13px;
+    z-index: 10000;
+
+  &:hover {
+    color: @nav-bg-highlight-color;
+    background: @main-highlight-background-color;
+  }
+}
+
+.modal-close:before {
+  content: "×";
+}

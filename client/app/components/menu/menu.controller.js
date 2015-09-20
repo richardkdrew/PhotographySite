@@ -10,6 +10,7 @@
   function Menu($location, menuService) {
 
     var vm = this;
+
     vm.ready = false;
     vm.items = [];
     vm.menuClass = menuClass;
@@ -28,12 +29,12 @@
       return menuService.getMenuItems().then(function (data) {
         vm.items = data;
         return vm.items;
-      })
+      });
     }
 
     function menuClass(page) {
       var current = $location.path();
-      return page === current ? "active" : "";
+      return page === current ? 'active' : '';
     }
 
     function navigate(location) {

@@ -11,44 +11,46 @@
       replace: true,
       templateUrl: 'app/widgets/picture-loader.html',
       scope: {
-        picture: '='
+        width: '=w',
+        height: '=h',
+        title: '=desc',
+        url: '='
       },
       link: link
     };
 
     function link(scope, element) {
 
-      if(scope.picture) {
-        var picture = scope.picture;
+      if(scope.url) {
 
         scope.isLoading = true;
-        scope.newHeight = calculateHeight(element[0], picture);
+        scope.newHeight = calculateHeight(element[0], scope.width, scope.height);
 
         var image = new Image();
 
         image.addEventListener('load', imageLoadComplete);
         image.addEventListener('error', imageLoadFailed);
 
-        image.src = picture.url;
-        image.alt = picture.title;
+        image.src = scope.url;
+        image.alt = scope.title;
       }
 
       function imageLoadComplete() {
 
-        //logImageDiagnostics(picture, element[0].clientWidth, scope.newHeight);
+        //logImageDiagnostics(scope, element[0].clientWidth, scope.newHeight);
 
         scope.$apply(function(){
-          element.css({ "max-width": picture.width });
-          element.css({ "width": element[0].clientWidth });
-          element.css({ "height": scope.newHeight });
-          element.removeAttr("height");
+          element.css({ 'max-width': scope.width });
+          element.css({ 'width': element[0].clientWidth });
+          element.css({ 'height': scope.newHeight });
+          element.removeAttr('height');
           scope.pictureSrc = image.src;
           scope.isLoading = false;
         });
       }
 
       function imageLoadFailed() {
-        console.log("Failed during picture load " + image.alt + "!");
+        console.log('Failed during picture load ' + image.alt + '!');
         scope.$apply(function(){
           scope.isLoading = false;
         });
@@ -56,20 +58,20 @@
     }
   }
 
-  function calculateHeight(container, item) {
+  function calculateHeight(container, width, height) {
     var containerWidth = Number(container.clientWidth);
-    var ratio = Number(item.height) / Number(item.width);
+    var ratio = Number(height) / Number(width);
     return Math.ceil(containerWidth * ratio);
   }
 
-  function logImageDiagnostics(picture, newWidth, newHeight) {
-    console.log("Id " + picture.id );
-    console.log("Title " + picture.title );
-    console.log("Original Height " + picture.height );
-    console.log("Original Width " + picture.width );
-    console.log("New Height " + newHeight);
-    console.log("New Width " + newWidth);
-    console.log("-----------------------------");
+  function logImageDiagnostics(scope, newWidth, newHeight) {
+    console.log('Id ' + scope.picture.id );
+    console.log('Title ' + scope.picture.title );
+    console.log('Original Height ' + scope.height );
+    console.log('Original Width ' + scope.width );
+    console.log('New Height ' + newHeight);
+    console.log('New Width ' + newWidth);
+    console.log('-----------------------------');
   }
 
 }());

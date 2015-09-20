@@ -9,7 +9,7 @@
   function menuService($q, dataService) {
 
     var self = this;
-    self.menuItems = [{"name": "About", "link": "/about"}];
+    self.menuItems = [{name: 'About', link: '/about'}];
 
     var service = {
       getMenuItems: getMenuItems
@@ -37,11 +37,11 @@
 
     function addMenuItems(tags) {
       // Add the all tags menu item
-      var allItem = {"name": "All", "link": "/pictures"};
+      var allItem = {name: 'All', link: '/pictures'};
       self.menuItems.push(allItem);
 
       for (var i = 0; i < tags.length; i++) {
-        var item = {"name": tags[i].name, "link": "/pictures/" + tags[i].name};
+        var item = {name: tags[i].name, link: '/pictures/' + tags[i].name};
         self.menuItems.push(item);
       }
     }
